@@ -21,9 +21,9 @@ dependencies = [
 dynamic = ["version"]
 
 [project.urls]
-Homepage = "https://github.com/tiangolo/readyapi"
-Documentation = "https://readyapi.tiangolo.com/"
-Repository = "https://github.com/tiangolo/readyapi"
+Homepage = "https://github.com/khulnasoft/readyapi"
+Documentation = "https://readyapi.khulnasoft.com/"
+Repository = "https://github.com/khulnasoft/readyapi"
 
 [project.optional-dependencies]
 all = [
