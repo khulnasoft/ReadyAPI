@@ -1,0 +1,5417 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ReadyAPI framework, high performance, easy to learn, fast to code, ready for production">
+      
+      
+      
+        <link rel="canonical" href="https://readyapi.khulnasoft.com/fr/tutorial/bigger-applications/">
+      
+      
+        <link rel="prev" href="../sql-databases/">
+      
+      
+        <link rel="next" href="../background-tasks/">
+      
+      
+      <link rel="icon" href="../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.4.7">
+    
+    
+      
+        <title>Bigger Applications - Multiple Files - ReadyAPI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../css/termynal.css">
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-YNEVN69SC3"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-YNEVN69SC3",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-YNEVN69SC3",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bigger-applications-multiple-files" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<div class="announce-wrapper">
+  <div id="announce-left">
+    <div class="item">
+      <a class="announce-link" href="https://twitter.com/readyapi" target="_blank">
+        <span class="twemoji twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+        </span> Follow <strong>@readyapi</strong> on <strong>Twitter</strong> to stay updated
+      </a>
+    </div>
+    <div class="item">
+      <a class="announce-link" href="https://readyapi.khulnasoft.com/newsletter/">
+        <span class="twemoji">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"/></svg>
+        </span> Subscribe to the <strong>ReadyAPI and friends</strong> newsletter 🎉
+      </a>
+    </div>
+    <div class="item">
+      <iframe style="display: inline-block; vertical-align: middle; border: none; margin-right: 0.5rem;" src="https://github.com/sponsors/khulnasoft/button" title="Sponsor khulnasoft" height="35" width="116" style="border: 0;"></iframe> <a class="announce-link" target="_blank" href="https://github.com/sponsors/khulnasoft">You can now sponsor <strong>ReadyAPI</strong> 🍰</a>
+    </div>
+  </div>
+  <div id="announce-right" style="position: relative;">
+    <div class="item">
+      <a title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway." style="display: block; position: relative;" href="https://cryptapi.io/" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/cryptapi-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Build, run and scale your apps on a modern, reliable, and secure PaaS." style="display: block; position: relative;" href="https://platform.sh/try-it-now/?utm_source=readyapi-signup&utm_medium=banner&utm_campaign=ReadyAPI-signup-June-2023" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/platform-sh-banner.png" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Deploy ReadyAPI on AWS with a few clicks" style="display: block; position: relative;" href="https://www.porter.run" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/porter-banner.png" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Automate ReadyAPI documentation generation with Bump.sh" style="display: block; position: relative;" href="https://bump.sh/readyapi?utm_source=readyapi&utm_medium=referral&utm_campaign=sponsor" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/bump-sh-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Reflex" style="display: block; position: relative;" href="https://reflex.dev" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/reflex-banner.png" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files" style="display: block; position: relative;" href="https://github.com/scalar/scalar/?utm_source=readyapi&utm_medium=website&utm_campaign=top-banner" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/scalar-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Auth, user management and more for your B2B product" style="display: block; position: relative;" href="https://www.propelauth.com/?utm_source=readyapi&utm_campaign=1223&utm_medium=topbanner" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/propelauth-banner.png" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Coherence" style="display: block; position: relative;" href="https://www.withcoherence.com/?utm_medium=advertising&utm_source=readyapi&utm_campaign=banner%20january%2024" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/coherence-banner.png" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Build your next app with ReadyAPI and MongoDB" style="display: block; position: relative;" href="https://www.mongodb.com/developer/languages/python/python-quickstart-readyapi/?utm_campaign=readyapi_framework&utm_source=readyapi_sponsorship&utm_medium=web_referral" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/mongodb-banner.png" />
+      </a>
+    </div>
+  </div>
+</div>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="ReadyAPI" class="md-header__button md-logo" aria-label="ReadyAPI" data-md-component="logo">
+      
+  <img src="../../img/icon-white.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ReadyAPI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bigger Applications - Multiple Files
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Sélectionner la langue">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/" hreflang="" class="md-select__link">
+              en - English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/az/" hreflang="" class="md-select__link">
+              az - azərbaycan dili
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/bn/" hreflang="" class="md-select__link">
+              bn - বাংলা
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/de/" hreflang="" class="md-select__link">
+              de - Deutsch
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/es/" hreflang="" class="md-select__link">
+              es - español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/fa/" hreflang="" class="md-select__link">
+              fa - فارسی
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/fr/" hreflang="" class="md-select__link">
+              fr - français
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/he/" hreflang="" class="md-select__link">
+              he - עברית
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/hu/" hreflang="" class="md-select__link">
+              hu - magyar
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/id/" hreflang="" class="md-select__link">
+              id - Bahasa Indonesia
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/it/" hreflang="" class="md-select__link">
+              it - italiano
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/ja/" hreflang="" class="md-select__link">
+              ja - 日本語
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/ko/" hreflang="" class="md-select__link">
+              ko - 한국어
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/pl/" hreflang="" class="md-select__link">
+              pl - Polski
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/pt/" hreflang="" class="md-select__link">
+              pt - português
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/ru/" hreflang="" class="md-select__link">
+              ru - русский язык
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/tr/" hreflang="" class="md-select__link">
+              tr - Türkçe
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/uk/" hreflang="" class="md-select__link">
+              uk - українська мова
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/ur/" hreflang="" class="md-select__link">
+              ur - اردو
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/vi/" hreflang="" class="md-select__link">
+              vi - Tiếng Việt
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/yo/" hreflang="" class="md-select__link">
+              yo - Yorùbá
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/zh/" hreflang="" class="md-select__link">
+              zh - 简体中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/zh-hant/" hreflang="" class="md-select__link">
+              zh-hant - 繁體中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/em/" hreflang="" class="md-select__link">
+              😉
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/khulnasoft/readyapi" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    khulnasoft/readyapi
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  ReadyAPI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../features/" class="md-tabs__link">
+        
+  
+    
+  
+  Fonctionnalités
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../learn/" class="md-tabs__link">
+          
+  
+    
+  
+  Learn
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reference/" class="md-tabs__link">
+          
+  
+    
+  
+  Reference - Code API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../readyapi-people/" class="md-tabs__link">
+        
+  
+    
+  
+  La communauté ReadyAPI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/" class="md-tabs__link">
+          
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../about/" class="md-tabs__link">
+          
+  
+    
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../help/" class="md-tabs__link">
+          
+  
+    
+  
+  Help
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release-notes/" class="md-tabs__link">
+        
+  
+    
+  
+  Release Notes
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ReadyAPI" class="md-nav__button md-logo" aria-label="ReadyAPI" data-md-component="logo">
+      
+  <img src="../../img/icon-white.svg" alt="logo">
+
+    </a>
+    ReadyAPI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/khulnasoft/readyapi" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    khulnasoft/readyapi
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ReadyAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fonctionnalités
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../learn/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Learn
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Learn
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python-types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction aux Types Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concurrence et les mots-clés async et await
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Tutoriel - Guide utilisateur - Introduction
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tutoriel - Guide utilisateur - Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../first-steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Démarrage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../path-params/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Paramètres de chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../query-params/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Paramètres de requête
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../body/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Corps de la requête
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../query-params-str-validations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Paramètres de requête et validations de chaînes de caractères
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../path-params-numeric-validations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Path Parameters and Numeric Validations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../body-multiple-params/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Body - Multiple Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../body-fields/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Body - Fields
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../body-nested-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Body - Nested Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema-extra-example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Declare Request Example Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extra-data-types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extra Data Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookie-params/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cookie Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../header-params/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Header Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../response-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response Model - Return Type
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extra-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extra Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../response-status-code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response Status Code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../request-forms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Form Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../request-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../request-forms-and-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request Forms and Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../handling-errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Handling Errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../path-operation-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Path Operation Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encoder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JSON Compatible Encoder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../body-updates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Body - Updates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_25" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../dependencies/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Dependencies
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_25" id="__nav_3_4_25_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_25">
+            <span class="md-nav__icon md-icon"></span>
+            Dependencies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dependencies/classes-as-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classes as Dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dependencies/sub-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sub-dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dependencies/dependencies-in-path-operation-decorators/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dependencies in path operation decorators
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dependencies/global-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Global Dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dependencies/dependencies-with-yield/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dependencies with yield
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_26" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../security/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_26" id="__nav_3_4_26_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_26">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/first-steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security - First Steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/get-current-user/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get Current User
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/simple-oauth2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple OAuth2 with Password and Bearer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/oauth2-jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OAuth2 with Password (and hashing), Bearer with JWT tokens
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Middleware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CORS (Cross-Origin Resource Sharing)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL (Relational) Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Bigger Applications - Multiple Files
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Bigger Applications - Multiple Files
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-example-file-structure" class="md-nav__link">
+    An example file structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apirouter" class="md-nav__link">
+    APIRouter
+  </a>
+  
+    <nav class="md-nav" aria-label="APIRouter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-apirouter" class="md-nav__link">
+    Import APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-operations-with-apirouter" class="md-nav__link">
+    Path operations with APIRouter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#another-module-with-apirouter" class="md-nav__link">
+    Another module with APIRouter
+  </a>
+  
+    <nav class="md-nav" aria-label="Another module with APIRouter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-the-dependencies" class="md-nav__link">
+    Import the dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Import the dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-relative-imports-work" class="md-nav__link">
+    How relative imports work
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-some-custom-tags-responses-and-dependencies" class="md-nav__link">
+    Add some custom tags, responses, and dependencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-main-readyapi" class="md-nav__link">
+    The main ReadyAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="The main ReadyAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-readyapi" class="md-nav__link">
+    Import ReadyAPI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-the-apirouter" class="md-nav__link">
+    Import the APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-the-importing-works" class="md-nav__link">
+    How the importing works
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-name-collisions" class="md-nav__link">
+    Avoid name collisions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-the-apirouters-for-users-and-items" class="md-nav__link">
+    Include the APIRouters for users and items
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies" class="md-nav__link">
+    Include an APIRouter with a custom prefix, tags, responses, and dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-a-path-operation" class="md-nav__link">
+    Include a path operation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-the-automatic-api-docs" class="md-nav__link">
+    Check the automatic API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#include-the-same-router-multiple-times-with-different-prefix" class="md-nav__link">
+    Include the same router multiple times with different prefix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#include-an-apirouter-in-another" class="md-nav__link">
+    Include an APIRouter in another
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-tasks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tâches d'arrière-plan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadata and Docs URLs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Static Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debugging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <abbr title="En anglais: Debugging">Débogage</abbr>
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../advanced/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Guide de l'utilisateur avancé
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Guide de l'utilisateur avancé
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/path-operation-advanced-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration avancée des paramètres de chemin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/additional-status-codes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Codes HTTP supplémentaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/response-directly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Renvoyer directement une réponse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/custom-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Response - HTML, Stream, File, others
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/additional-responses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Réponses supplémentaires dans OpenAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/response-cookies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response Cookies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/response-headers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response Headers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/response-change-status-code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response - Change Status Code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/advanced-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_11" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../advanced/security/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Advanced Security
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5_11" id="__nav_3_5_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_11">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/security/oauth2-scopes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OAuth2 scopes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/security/http-basic-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP Basic Auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/using-request-directly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using the Request Directly
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/dataclasses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using Dataclasses
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/middleware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Middleware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/sub-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sub Applications - Mounts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/behind-a-proxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Behind a Proxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/websockets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WebSockets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lifespan Events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/testing-websockets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing WebSockets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/testing-events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing Events: startup - shutdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/testing-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing Dependencies with Overrides
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/testing-database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing a Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/async-tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings and Environment Variables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/openapi-callbacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenAPI Callbacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/openapi-webhooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenAPI Webhooks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/wsgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Including WSGI - Flask, Django, others
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/generate-clients/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Generate Clients
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../deployment/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Déploiement
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Déploiement
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/versions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    À propos des versions de ReadyAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/https/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    À propos de HTTPS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/manually/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exécuter un serveur manuellement - Uvicorn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployments Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/cloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy ReadyAPI on Cloud Providers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/server-workers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server Workers - Gunicorn with Uvicorn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Déployer avec Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../how-to/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    How To - Recipes
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            How To - Recipes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/general/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General - How To - Recipes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/graphql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GraphQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/custom-request-and-route/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Request and APIRoute class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/conditional-openapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conditional OpenAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/extending-openapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extending OpenAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/separate-openapi-schemas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Separate OpenAPI Schemas for Input and Output or Not
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/custom-docs-ui-assets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Docs UI Static Assets (Self-Hosting)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/configure-swagger-ui/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure Swagger UI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/sql-databases-peewee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ~~SQL (Relational) Databases with Peewee~~ (deprecated)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/async-sql-encode-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ~~Async SQL (Relational) Databases with Encode/Databases~~ (deprecated)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/nosql-databases-couchbase/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ~~NoSQL (Distributed / Big Data) Databases with Couchbase~~ (deprecated)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Reference - Code API
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference - Code API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/readyapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `ReadyAPI` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/status/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Status Codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/uploadfile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `UploadFile` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/exceptions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exceptions - `HTTPException` and `WebSocketException`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dependencies - `Depends()` and `Security()`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/apirouter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `APIRouter` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/background/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Background Tasks - `BackgroundTasks`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/request/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `Request` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/websockets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WebSockets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/httpconnection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `HTTPConnection` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `Response` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/responses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Response Classes - File, HTML, Redirect, Streaming, etc.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/middleware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Middleware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_16" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/openapi/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    OpenAPI
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_16" id="__nav_4_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_16">
+            <span class="md-nav__icon md-icon"></span>
+            OpenAPI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/openapi/docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenAPI `docs`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/openapi/models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenAPI `models`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security Tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/encoders/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Encoders - `jsonable_encoder`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/staticfiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Static Files - `StaticFiles`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/templating/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Templating - `Jinja2Templates`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/testclient/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Client - `TestClient`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../readyapi-people/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    La communauté ReadyAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../resources/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Resources
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project-generation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Génération de projets - Modèle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../external-links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Articles et liens externes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../newsletter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ReadyAPI and friends newsletter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../about/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../alternatives/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alternatives, inspiration et comparaisons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history-design-future/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Histoire, conception et avenir
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../benchmarks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test de performance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../help/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Help
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Help
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../help-readyapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Help ReadyAPI - Obtenir de l'aide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Développement - Contribuer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Notes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-example-file-structure" class="md-nav__link">
+    An example file structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apirouter" class="md-nav__link">
+    APIRouter
+  </a>
+  
+    <nav class="md-nav" aria-label="APIRouter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-apirouter" class="md-nav__link">
+    Import APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-operations-with-apirouter" class="md-nav__link">
+    Path operations with APIRouter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#another-module-with-apirouter" class="md-nav__link">
+    Another module with APIRouter
+  </a>
+  
+    <nav class="md-nav" aria-label="Another module with APIRouter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-the-dependencies" class="md-nav__link">
+    Import the dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Import the dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-relative-imports-work" class="md-nav__link">
+    How relative imports work
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-some-custom-tags-responses-and-dependencies" class="md-nav__link">
+    Add some custom tags, responses, and dependencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-main-readyapi" class="md-nav__link">
+    The main ReadyAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="The main ReadyAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-readyapi" class="md-nav__link">
+    Import ReadyAPI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-the-apirouter" class="md-nav__link">
+    Import the APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-the-importing-works" class="md-nav__link">
+    How the importing works
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-name-collisions" class="md-nav__link">
+    Avoid name collisions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-the-apirouters-for-users-and-items" class="md-nav__link">
+    Include the APIRouters for users and items
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies" class="md-nav__link">
+    Include an APIRouter with a custom prefix, tags, responses, and dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-a-path-operation" class="md-nav__link">
+    Include a path operation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-the-automatic-api-docs" class="md-nav__link">
+    Check the automatic API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#include-the-same-router-multiple-times-with-different-prefix" class="md-nav__link">
+    Include the same router multiple times with different prefix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#include-an-apirouter-in-another" class="md-nav__link">
+    Include an APIRouter in another
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="bigger-applications-multiple-files">Bigger Applications - Multiple Files<a class="headerlink" href="#bigger-applications-multiple-files" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The current page still doesn't have a translation for this language.</p>
+<p>But you can help translating it: <a class="internal-link" href="https://readyapi.khulnasoft.com/contributing/" target="_blank">Contributing</a>.</p>
+</div>
+<p>If you are building an application or a web API, it's rarely the case that you can put everything on a single file.</p>
+<p><strong>ReadyAPI</strong> provides a convenience tool to structure your application while keeping all the flexibility.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you come from Flask, this would be the equivalent of Flask's Blueprints.</p>
+</div>
+<h2 id="an-example-file-structure">An example file structure<a class="headerlink" href="#an-example-file-structure" title="Permanent link">&para;</a></h2>
+<p>Let's say you have a file structure like this:</p>
+<div class="highlight"><pre><span></span><code>.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   ├── dependencies.py
+│   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
+│       ├── __init__.py
+│       └── admin.py
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>There are several <code>__init__.py</code> files: one in each directory or subdirectory.</p>
+<p>This is what allows importing code from one file into another.</p>
+<p>For example, in <code>app/main.py</code> you could have a line like:</p>
+<div class="highlight"><pre><span></span><code>from app.routers import items
+</code></pre></div>
+</div>
+<ul>
+<li>The <code>app</code> directory contains everything. And it has an empty file <code>app/__init__.py</code>, so it is a "Python package" (a collection of "Python modules"): <code>app</code>.</li>
+<li>It contains an <code>app/main.py</code> file. As it is inside a Python package (a directory with a file <code>__init__.py</code>), it is a "module" of that package: <code>app.main</code>.</li>
+<li>There's also an <code>app/dependencies.py</code> file, just like <code>app/main.py</code>, it is a "module": <code>app.dependencies</code>.</li>
+<li>There's a subdirectory <code>app/routers/</code> with another file <code>__init__.py</code>, so it's a "Python subpackage": <code>app.routers</code>.</li>
+<li>The file <code>app/routers/items.py</code> is inside a package, <code>app/routers/</code>, so, it's a submodule: <code>app.routers.items</code>.</li>
+<li>The same with <code>app/routers/users.py</code>, it's another submodule: <code>app.routers.users</code>.</li>
+<li>There's also a subdirectory <code>app/internal/</code> with another file <code>__init__.py</code>, so it's another "Python subpackage": <code>app.internal</code>.</li>
+<li>And the file <code>app/internal/admin.py</code> is another submodule: <code>app.internal.admin</code>.</li>
+</ul>
+<p><img src="/img/tutorial/bigger-applications/package.svg"></p>
+<p>The same file structure with comments:</p>
+<div class="highlight"><pre><span></span><code>.
+├── app                  # &quot;app&quot; is a Python package
+│   ├── __init__.py      # this file makes &quot;app&quot; a &quot;Python package&quot;
+│   ├── main.py          # &quot;main&quot; module, e.g. import app.main
+│   ├── dependencies.py  # &quot;dependencies&quot; module, e.g. import app.dependencies
+│   └── routers          # &quot;routers&quot; is a &quot;Python subpackage&quot;
+│   │   ├── __init__.py  # makes &quot;routers&quot; a &quot;Python subpackage&quot;
+│   │   ├── items.py     # &quot;items&quot; submodule, e.g. import app.routers.items
+│   │   └── users.py     # &quot;users&quot; submodule, e.g. import app.routers.users
+│   └── internal         # &quot;internal&quot; is a &quot;Python subpackage&quot;
+│       ├── __init__.py  # makes &quot;internal&quot; a &quot;Python subpackage&quot;
+│       └── admin.py     # &quot;admin&quot; submodule, e.g. import app.internal.admin
+</code></pre></div>
+<h2 id="apirouter"><code>APIRouter</code><a class="headerlink" href="#apirouter" title="Permanent link">&para;</a></h2>
+<p>Let's say the file dedicated to handling just users is the submodule at <code>/app/routers/users.py</code>.</p>
+<p>You want to have the <em>path operations</em> related to your users separated from the rest of the code, to keep it organized.</p>
+<p>But it's still part of the same <strong>ReadyAPI</strong> application/web API (it's part of the same "Python Package").</p>
+<p>You can create the <em>path operations</em> for that module using <code>APIRouter</code>.</p>
+<h3 id="import-apirouter">Import <code>APIRouter</code><a class="headerlink" href="#import-apirouter" title="Permanent link">&para;</a></h3>
+<p>You import it and create an "instance" the same way you would with the class <code>ReadyAPI</code>:</p>
+<div class="highlight"><span class="filename">app/routers/users.py</span><pre><span></span><code><span class="hll"><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">APIRouter</span>
+</span>
+<span class="hll"><span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+</span>
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_users</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;Rick&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;Morty&quot;</span><span class="p">}]</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/me&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_user_me</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;fakecurrentuser&quot;</span><span class="p">}</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/</span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">}</span>
+</code></pre></div>
+<h3 id="path-operations-with-apirouter"><em>Path operations</em> with <code>APIRouter</code><a class="headerlink" href="#path-operations-with-apirouter" title="Permanent link">&para;</a></h3>
+<p>And then you use it to declare your <em>path operations</em>.</p>
+<p>Use it the same way you would use the <code>ReadyAPI</code> class:</p>
+<div class="highlight"><span class="filename">app/routers/users.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">APIRouter</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+
+
+<span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_users</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;Rick&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;Morty&quot;</span><span class="p">}]</span>
+
+
+<span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/me&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_user_me</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;fakecurrentuser&quot;</span><span class="p">}</span>
+
+
+<span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/</span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">}</span>
+</code></pre></div>
+<p>You can think of <code>APIRouter</code> as a "mini <code>ReadyAPI</code>" class.</p>
+<p>All the same options are supported.</p>
+<p>All the same <code>parameters</code>, <code>responses</code>, <code>dependencies</code>, <code>tags</code>, etc.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In this example, the variable is called <code>router</code>, but you can name it however you want.</p>
+</div>
+<p>We are going to include this <code>APIRouter</code> in the main <code>ReadyAPI</code> app, but first, let's check the dependencies and another <code>APIRouter</code>.</p>
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<p>We see that we are going to need some dependencies used in several places of the application.</p>
+<p>So we put them in their own <code>dependencies</code> module (<code>app/dependencies.py</code>).</p>
+<p>We will now use a simple dependency to read a custom <code>X-Token</code> header:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python 3.9+</label><label for="__tabbed_1_2">Python 3.8+</label><label for="__tabbed_1_3">Python 3.8+ non-Annotated</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">app/dependencies.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Annotated</span>
+
+<span class="hll"><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">Header</span><span class="p">,</span> <span class="n">HTTPException</span>
+</span>
+
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">get_token_header</span><span class="p">(</span><span class="n">x_token</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Header</span><span class="p">()]):</span>
+</span><span class="hll">    <span class="k">if</span> <span class="n">x_token</span> <span class="o">!=</span> <span class="s2">&quot;fake-super-secret-token&quot;</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;X-Token header invalid&quot;</span><span class="p">)</span>
+</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_query_token</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">token</span> <span class="o">!=</span> <span class="s2">&quot;jessica&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;No Jessica token provided&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">app/dependencies.py</span><pre><span></span><code><span class="hll"><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">Header</span><span class="p">,</span> <span class="n">HTTPException</span>
+</span><span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Annotated</span>
+
+
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">get_token_header</span><span class="p">(</span><span class="n">x_token</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Header</span><span class="p">()]):</span>
+</span><span class="hll">    <span class="k">if</span> <span class="n">x_token</span> <span class="o">!=</span> <span class="s2">&quot;fake-super-secret-token&quot;</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;X-Token header invalid&quot;</span><span class="p">)</span>
+</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_query_token</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">token</span> <span class="o">!=</span> <span class="s2">&quot;jessica&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;No Jessica token provided&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Prefer to use the <code>Annotated</code> version if possible.</p>
+</div>
+<div class="highlight"><span class="filename">app/dependencies.py</span><pre><span></span><code><span class="hll"><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">Header</span><span class="p">,</span> <span class="n">HTTPException</span>
+</span>
+
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">get_token_header</span><span class="p">(</span><span class="n">x_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Header</span><span class="p">()):</span>
+</span><span class="hll">    <span class="k">if</span> <span class="n">x_token</span> <span class="o">!=</span> <span class="s2">&quot;fake-super-secret-token&quot;</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;X-Token header invalid&quot;</span><span class="p">)</span>
+</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_query_token</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">token</span> <span class="o">!=</span> <span class="s2">&quot;jessica&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;No Jessica token provided&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We are using an invented header to simplify this example.</p>
+<p>But in real cases you will get better results using the integrated <a class="internal-link" href="../security/" target="_blank">Security utilities</a>.</p>
+</div>
+<h2 id="another-module-with-apirouter">Another module with <code>APIRouter</code><a class="headerlink" href="#another-module-with-apirouter" title="Permanent link">&para;</a></h2>
+<p>Let's say you also have the endpoints dedicated to handling "items" from your application in the module at <code>app/routers/items.py</code>.</p>
+<p>You have <em>path operations</em> for:</p>
+<ul>
+<li><code>/items/</code></li>
+<li><code>/items/{item_id}</code></li>
+</ul>
+<p>It's all the same structure as with <code>app/routers/users.py</code>.</p>
+<p>But we want to be smarter and simplify the code a bit.</p>
+<p>We know all the <em>path operations</em> in this module have the same:</p>
+<ul>
+<li>Path <code>prefix</code>: <code>/items</code>.</li>
+<li><code>tags</code>: (just one tag: <code>items</code>).</li>
+<li>Extra <code>responses</code>.</li>
+<li><code>dependencies</code>: they all need that <code>X-Token</code> dependency we created.</li>
+</ul>
+<p>So, instead of adding all that to each <em>path operation</em>, we can add it to the <code>APIRouter</code>.</p>
+<div class="highlight"><span class="filename">app/routers/items.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="kn">from</span> <span class="nn">..dependencies</span> <span class="kn">import</span> <span class="n">get_token_header</span>
+
+<span class="hll"><span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">(</span>
+</span><span class="hll">    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/items&quot;</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">],</span>
+</span><span class="hll">    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+</span><span class="hll">    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">404</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Not found&quot;</span><span class="p">}},</span>
+</span><span class="hll"><span class="p">)</span>
+</span>
+
+<span class="n">fake_items_db</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;plumbus&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Plumbus&quot;</span><span class="p">},</span> <span class="s2">&quot;gun&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Portal Gun&quot;</span><span class="p">}}</span>
+
+
+<span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_items</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">fake_items_db</span>
+
+
+<span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">item_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fake_items_db</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Item not found&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">fake_items_db</span><span class="p">[</span><span class="n">item_id</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">}</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+    <span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;custom&quot;</span><span class="p">],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">403</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Operation forbidden&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">update_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">item_id</span> <span class="o">!=</span> <span class="s2">&quot;plumbus&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;You can only update the item: plumbus&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;The great Plumbus&quot;</span><span class="p">}</span>
+</code></pre></div>
+<p>As the path of each <em>path operation</em> has to start with <code>/</code>, like in:</p>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div>
+<p>...the prefix must not include a final <code>/</code>.</p>
+<p>So, the prefix in this case is <code>/items</code>.</p>
+<p>We can also add a list of <code>tags</code> and extra <code>responses</code> that will be applied to all the <em>path operations</em> included in this router.</p>
+<p>And we can add a list of <code>dependencies</code> that will be added to all the <em>path operations</em> in the router and will be executed/solved for each request made to them.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Note that, much like <a class="internal-link" href="../dependencies/dependencies-in-path-operation-decorators/" target="_blank">dependencies in <em>path operation decorators</em></a>, no value will be passed to your <em>path operation function</em>.</p>
+</div>
+<p>The end result is that the item paths are now:</p>
+<ul>
+<li><code>/items/</code></li>
+<li><code>/items/{item_id}</code></li>
+</ul>
+<p>...as we intended.</p>
+<ul>
+<li>They will be marked with a list of tags that contain a single string <code>"items"</code>.<ul>
+<li>These "tags" are especially useful for the automatic interactive documentation systems (using OpenAPI).</li>
+</ul>
+</li>
+<li>All of them will include the predefined <code>responses</code>.</li>
+<li>All these <em>path operations</em> will have the list of <code>dependencies</code> evaluated/executed before them.<ul>
+<li>If you also declare dependencies in a specific <em>path operation</em>, <strong>they will be executed too</strong>.</li>
+<li>The router dependencies are executed first, then the <a class="internal-link" href="../dependencies/dependencies-in-path-operation-decorators/" target="_blank"><code>dependencies</code> in the decorator</a>, and then the normal parameter dependencies.</li>
+<li>You can also add <a class="internal-link" href="../../advanced/security/oauth2-scopes/" target="_blank"><code>Security</code> dependencies with <code>scopes</code></a>.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Having <code>dependencies</code> in the <code>APIRouter</code> can be used, for example, to require authentication for a whole group of <em>path operations</em>. Even if the dependencies are not added individually to each one of them.</p>
+</div>
+<div class="admonition check">
+<p class="admonition-title">Check</p>
+<p>The <code>prefix</code>, <code>tags</code>, <code>responses</code>, and <code>dependencies</code> parameters are (as in many other cases) just a feature from <strong>ReadyAPI</strong> to help you avoid code duplication.</p>
+</div>
+<h3 id="import-the-dependencies">Import the dependencies<a class="headerlink" href="#import-the-dependencies" title="Permanent link">&para;</a></h3>
+<p>This code lives in the module <code>app.routers.items</code>, the file <code>app/routers/items.py</code>.</p>
+<p>And we need to get the dependency function from the module <code>app.dependencies</code>, the file <code>app/dependencies.py</code>.</p>
+<p>So we use a relative import with <code>..</code> for the dependencies:</p>
+<div class="highlight"><span class="filename">app/routers/items.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="hll"><span class="kn">from</span> <span class="nn">..dependencies</span> <span class="kn">import</span> <span class="n">get_token_header</span>
+</span>
+<span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">(</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/items&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">404</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Not found&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+
+
+<span class="n">fake_items_db</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;plumbus&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Plumbus&quot;</span><span class="p">},</span> <span class="s2">&quot;gun&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Portal Gun&quot;</span><span class="p">}}</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_items</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">fake_items_db</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">item_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fake_items_db</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Item not found&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">fake_items_db</span><span class="p">[</span><span class="n">item_id</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">}</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+    <span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;custom&quot;</span><span class="p">],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">403</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Operation forbidden&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">update_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">item_id</span> <span class="o">!=</span> <span class="s2">&quot;plumbus&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;You can only update the item: plumbus&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;The great Plumbus&quot;</span><span class="p">}</span>
+</code></pre></div>
+<h4 id="how-relative-imports-work">How relative imports work<a class="headerlink" href="#how-relative-imports-work" title="Permanent link">&para;</a></h4>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you know perfectly how imports work, continue to the next section below.</p>
+</div>
+<p>A single dot <code>.</code>, like in:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">.dependencies</span> <span class="kn">import</span> <span class="n">get_token_header</span>
+</code></pre></div>
+<p>would mean:</p>
+<ul>
+<li>Starting in the same package that this module (the file <code>app/routers/items.py</code>) lives in (the directory <code>app/routers/</code>)...</li>
+<li>find the module <code>dependencies</code> (an imaginary file at <code>app/routers/dependencies.py</code>)...</li>
+<li>and from it, import the function <code>get_token_header</code>.</li>
+</ul>
+<p>But that file doesn't exist, our dependencies are in a file at <code>app/dependencies.py</code>.</p>
+<p>Remember how our app/file structure looks like:</p>
+<p><img src="/img/tutorial/bigger-applications/package.svg"></p>
+<hr />
+<p>The two dots <code>..</code>, like in:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">..dependencies</span> <span class="kn">import</span> <span class="n">get_token_header</span>
+</code></pre></div>
+<p>mean:</p>
+<ul>
+<li>Starting in the same package that this module (the file <code>app/routers/items.py</code>) lives in (the directory <code>app/routers/</code>)...</li>
+<li>go to the parent package (the directory <code>app/</code>)...</li>
+<li>and in there, find the module <code>dependencies</code> (the file at <code>app/dependencies.py</code>)...</li>
+<li>and from it, import the function <code>get_token_header</code>.</li>
+</ul>
+<p>That works correctly! 🎉</p>
+<hr />
+<p>The same way, if we had used three dots <code>...</code>, like in:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">...dependencies</span> <span class="kn">import</span> <span class="n">get_token_header</span>
+</code></pre></div>
+<p>that would mean:</p>
+<ul>
+<li>Starting in the same package that this module (the file <code>app/routers/items.py</code>) lives in (the directory <code>app/routers/</code>)...</li>
+<li>go to the parent package (the directory <code>app/</code>)...</li>
+<li>then go to the parent of that package (there's no parent package, <code>app</code> is the top level 😱)...</li>
+<li>and in there, find the module <code>dependencies</code> (the file at <code>app/dependencies.py</code>)...</li>
+<li>and from it, import the function <code>get_token_header</code>.</li>
+</ul>
+<p>That would refer to some package above <code>app/</code>, with its own file <code>__init__.py</code>, etc. But we don't have that. So, that would throw an error in our example. 🚨</p>
+<p>But now you know how it works, so you can use relative imports in your own apps no matter how complex they are. 🤓</p>
+<h3 id="add-some-custom-tags-responses-and-dependencies">Add some custom <code>tags</code>, <code>responses</code>, and <code>dependencies</code><a class="headerlink" href="#add-some-custom-tags-responses-and-dependencies" title="Permanent link">&para;</a></h3>
+<p>We are not adding the prefix <code>/items</code> nor the <code>tags=["items"]</code> to each <em>path operation</em> because we added them to the <code>APIRouter</code>.</p>
+<p>But we can still add <em>more</em> <code>tags</code> that will be applied to a specific <em>path operation</em>, and also some extra <code>responses</code> specific to that <em>path operation</em>:</p>
+<div class="highlight"><span class="filename">app/routers/items.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="kn">from</span> <span class="nn">..dependencies</span> <span class="kn">import</span> <span class="n">get_token_header</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">(</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/items&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">404</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Not found&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+
+
+<span class="n">fake_items_db</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;plumbus&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Plumbus&quot;</span><span class="p">},</span> <span class="s2">&quot;gun&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Portal Gun&quot;</span><span class="p">}}</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_items</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">fake_items_db</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">item_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fake_items_db</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Item not found&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">fake_items_db</span><span class="p">[</span><span class="n">item_id</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">}</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+    <span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="hll">    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;custom&quot;</span><span class="p">],</span>
+</span><span class="hll">    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">403</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Operation forbidden&quot;</span><span class="p">}},</span>
+</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">update_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">item_id</span> <span class="o">!=</span> <span class="s2">&quot;plumbus&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;You can only update the item: plumbus&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;The great Plumbus&quot;</span><span class="p">}</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This last path operation will have the combination of tags: <code>["items", "custom"]</code>.</p>
+<p>And it will also have both responses in the documentation, one for <code>404</code> and one for <code>403</code>.</p>
+</div>
+<h2 id="the-main-readyapi">The main <code>ReadyAPI</code><a class="headerlink" href="#the-main-readyapi" title="Permanent link">&para;</a></h2>
+<p>Now, let's see the module at <code>app/main.py</code>.</p>
+<p>Here's where you import and use the class <code>ReadyAPI</code>.</p>
+<p>This will be the main file in your application that ties everything together.</p>
+<p>And as most of your logic will now live in its own specific module, the main file will be quite simple.</p>
+<h3 id="import-readyapi">Import <code>ReadyAPI</code><a class="headerlink" href="#import-readyapi" title="Permanent link">&para;</a></h3>
+<p>You import and create a <code>ReadyAPI</code> class as normally.</p>
+<p>And we can even declare <a class="internal-link" href="../dependencies/global-dependencies/" target="_blank">global dependencies</a> that will be combined with the dependencies for each <code>APIRouter</code>:</p>
+<div class="highlight"><span class="filename">app/main.py</span><pre><span></span><code><span class="hll"><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">ReadyAPI</span>
+</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">.dependencies</span> <span class="kn">import</span> <span class="n">get_query_token</span><span class="p">,</span> <span class="n">get_token_header</span>
+</span><span class="kn">from</span> <span class="nn">.internal</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+
+<span class="hll"><span class="n">app</span> <span class="o">=</span> <span class="n">ReadyAPI</span><span class="p">(</span><span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_query_token</span><span class="p">)])</span>
+</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">admin</span><span class="o">.</span><span class="n">router</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/admin&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">418</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;I&#39;m a teapot&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello Bigger Applications!&quot;</span><span class="p">}</span>
+</code></pre></div>
+<h3 id="import-the-apirouter">Import the <code>APIRouter</code><a class="headerlink" href="#import-the-apirouter" title="Permanent link">&para;</a></h3>
+<p>Now we import the other submodules that have <code>APIRouter</code>s:</p>
+<div class="highlight"><span class="filename">app/main.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">ReadyAPI</span>
+
+<span class="kn">from</span> <span class="nn">.dependencies</span> <span class="kn">import</span> <span class="n">get_query_token</span><span class="p">,</span> <span class="n">get_token_header</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">.internal</span> <span class="kn">import</span> <span class="n">admin</span>
+</span><span class="hll"><span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">ReadyAPI</span><span class="p">(</span><span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_query_token</span><span class="p">)])</span>
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">admin</span><span class="o">.</span><span class="n">router</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/admin&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">418</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;I&#39;m a teapot&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello Bigger Applications!&quot;</span><span class="p">}</span>
+</code></pre></div>
+<p>As the files <code>app/routers/users.py</code> and <code>app/routers/items.py</code> are submodules that are part of the same Python package <code>app</code>, we can use a single dot <code>.</code> to import them using "relative imports".</p>
+<h3 id="how-the-importing-works">How the importing works<a class="headerlink" href="#how-the-importing-works" title="Permanent link">&para;</a></h3>
+<p>The section:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+</code></pre></div>
+<p>means:</p>
+<ul>
+<li>Starting in the same package that this module (the file <code>app/main.py</code>) lives in (the directory <code>app/</code>)...</li>
+<li>look for the subpackage <code>routers</code> (the directory at <code>app/routers/</code>)...</li>
+<li>and from it, import the submodule <code>items</code> (the file at <code>app/routers/items.py</code>) and <code>users</code> (the file at <code>app/routers/users.py</code>)...</li>
+</ul>
+<p>The module <code>items</code> will have a variable <code>router</code> (<code>items.router</code>). This is the same one we created in the file <code>app/routers/items.py</code>, it's an <code>APIRouter</code> object.</p>
+<p>And then we do the same for the module <code>users</code>.</p>
+<p>We could also import them like:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">app.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The first version is a "relative import":</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+</code></pre></div>
+<p>The second version is an "absolute import":</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">app.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+</code></pre></div>
+<p>To learn more about Python Packages and Modules, read <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">the official Python documentation about Modules</a>.</p>
+</div>
+<h3 id="avoid-name-collisions">Avoid name collisions<a class="headerlink" href="#avoid-name-collisions" title="Permanent link">&para;</a></h3>
+<p>We are importing the submodule <code>items</code> directly, instead of importing just its variable <code>router</code>.</p>
+<p>This is because we also have another variable named <code>router</code> in the submodule <code>users</code>.</p>
+<p>If we had imported one after the other, like:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">.routers.items</span> <span class="kn">import</span> <span class="n">router</span>
+<span class="kn">from</span> <span class="nn">.routers.users</span> <span class="kn">import</span> <span class="n">router</span>
+</code></pre></div>
+<p>the <code>router</code> from <code>users</code> would overwrite the one from <code>items</code> and we wouldn't be able to use them at the same time.</p>
+<p>So, to be able to use both of them in the same file, we import the submodules directly:</p>
+<div class="highlight"><span class="filename">app/main.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">ReadyAPI</span>
+
+<span class="kn">from</span> <span class="nn">.dependencies</span> <span class="kn">import</span> <span class="n">get_query_token</span><span class="p">,</span> <span class="n">get_token_header</span>
+<span class="kn">from</span> <span class="nn">.internal</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">ReadyAPI</span><span class="p">(</span><span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_query_token</span><span class="p">)])</span>
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">admin</span><span class="o">.</span><span class="n">router</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/admin&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">418</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;I&#39;m a teapot&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello Bigger Applications!&quot;</span><span class="p">}</span>
+</code></pre></div>
+<h3 id="include-the-apirouters-for-users-and-items">Include the <code>APIRouter</code>s for <code>users</code> and <code>items</code><a class="headerlink" href="#include-the-apirouters-for-users-and-items" title="Permanent link">&para;</a></h3>
+<p>Now, let's include the <code>router</code>s from the submodules <code>users</code> and <code>items</code>:</p>
+<div class="highlight"><span class="filename">app/main.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">ReadyAPI</span>
+
+<span class="kn">from</span> <span class="nn">.dependencies</span> <span class="kn">import</span> <span class="n">get_query_token</span><span class="p">,</span> <span class="n">get_token_header</span>
+<span class="kn">from</span> <span class="nn">.internal</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">ReadyAPI</span><span class="p">(</span><span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_query_token</span><span class="p">)])</span>
+
+
+<span class="hll"><span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+</span><span class="hll"><span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+</span><span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">admin</span><span class="o">.</span><span class="n">router</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/admin&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">418</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;I&#39;m a teapot&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello Bigger Applications!&quot;</span><span class="p">}</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><code>users.router</code> contains the <code>APIRouter</code> inside of the file <code>app/routers/users.py</code>.</p>
+<p>And <code>items.router</code> contains the <code>APIRouter</code> inside of the file <code>app/routers/items.py</code>.</p>
+</div>
+<p>With <code>app.include_router()</code> we can add each <code>APIRouter</code> to the main <code>ReadyAPI</code> application.</p>
+<p>It will include all the routes from that router as part of it.</p>
+<div class="admonition note">
+<p class="admonition-title">Technical Details</p>
+<p>It will actually internally create a <em>path operation</em> for each <em>path operation</em> that was declared in the <code>APIRouter</code>.</p>
+<p>So, behind the scenes, it will actually work as if everything was the same single app.</p>
+</div>
+<div class="admonition check">
+<p class="admonition-title">Check</p>
+<p>You don't have to worry about performance when including routers.</p>
+<p>This will take microseconds and will only happen at startup.</p>
+<p>So it won't affect performance. ⚡</p>
+</div>
+<h3 id="include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies">Include an <code>APIRouter</code> with a custom <code>prefix</code>, <code>tags</code>, <code>responses</code>, and <code>dependencies</code><a class="headerlink" href="#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies" title="Permanent link">&para;</a></h3>
+<p>Now, let's imagine your organization gave you the <code>app/internal/admin.py</code> file.</p>
+<p>It contains an <code>APIRouter</code> with some admin <em>path operations</em> that your organization shares between several projects.</p>
+<p>For this example it will be super simple. But let's say that because it is shared with other projects in the organization, we cannot modify it and add a <code>prefix</code>, <code>dependencies</code>, <code>tags</code>, etc. directly to the <code>APIRouter</code>:</p>
+<div class="highlight"><span class="filename">app/internal/admin.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">APIRouter</span>
+
+<span class="hll"><span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+</span>
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">update_admin</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Admin getting schwifty&quot;</span><span class="p">}</span>
+</code></pre></div>
+<p>But we still want to set a custom <code>prefix</code> when including the <code>APIRouter</code> so that all its <em>path operations</em> start with <code>/admin</code>, we want to secure it with the <code>dependencies</code> we already have for this project, and we want to include <code>tags</code> and <code>responses</code>.</p>
+<p>We can declare all that without having to modify the original <code>APIRouter</code> by passing those parameters to <code>app.include_router()</code>:</p>
+<div class="highlight"><span class="filename">app/main.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">ReadyAPI</span>
+
+<span class="kn">from</span> <span class="nn">.dependencies</span> <span class="kn">import</span> <span class="n">get_query_token</span><span class="p">,</span> <span class="n">get_token_header</span>
+<span class="kn">from</span> <span class="nn">.internal</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">ReadyAPI</span><span class="p">(</span><span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_query_token</span><span class="p">)])</span>
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">admin</span><span class="o">.</span><span class="n">router</span><span class="p">,</span>
+<span class="hll">    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/admin&quot;</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">],</span>
+</span><span class="hll">    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+</span><span class="hll">    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">418</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;I&#39;m a teapot&quot;</span><span class="p">}},</span>
+</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello Bigger Applications!&quot;</span><span class="p">}</span>
+</code></pre></div>
+<p>That way, the original <code>APIRouter</code> will keep unmodified, so we can still share that same <code>app/internal/admin.py</code> file with other projects in the organization.</p>
+<p>The result is that in our app, each of the <em>path operations</em> from the <code>admin</code> module will have:</p>
+<ul>
+<li>The prefix <code>/admin</code>.</li>
+<li>The tag <code>admin</code>.</li>
+<li>The dependency <code>get_token_header</code>.</li>
+<li>The response <code>418</code>. 🍵</li>
+</ul>
+<p>But that will only affect that <code>APIRouter</code> in our app, not in any other code that uses it.</p>
+<p>So, for example, other projects could use the same <code>APIRouter</code> with a different authentication method.</p>
+<h3 id="include-a-path-operation">Include a <em>path operation</em><a class="headerlink" href="#include-a-path-operation" title="Permanent link">&para;</a></h3>
+<p>We can also add <em>path operations</em> directly to the <code>ReadyAPI</code> app.</p>
+<p>Here we do it... just to show that we can 🤷:</p>
+<div class="highlight"><span class="filename">app/main.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">ReadyAPI</span>
+
+<span class="kn">from</span> <span class="nn">.dependencies</span> <span class="kn">import</span> <span class="n">get_query_token</span><span class="p">,</span> <span class="n">get_token_header</span>
+<span class="kn">from</span> <span class="nn">.internal</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">ReadyAPI</span><span class="p">(</span><span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_query_token</span><span class="p">)])</span>
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">admin</span><span class="o">.</span><span class="n">router</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/admin&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">418</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;I&#39;m a teapot&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+</span><span class="hll">    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello Bigger Applications!&quot;</span><span class="p">}</span>
+</span></code></pre></div>
+<p>and it will work correctly, together with all the other <em>path operations</em> added with <code>app.include_router()</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Very Technical Details</p>
+<p><strong>Note</strong>: this is a very technical detail that you probably can <strong>just skip</strong>.</p>
+<hr />
+<p>The <code>APIRouter</code>s are not "mounted", they are not isolated from the rest of the application.</p>
+<p>This is because we want to include their <em>path operations</em> in the OpenAPI schema and the user interfaces.</p>
+<p>As we cannot just isolate them and "mount" them independently of the rest, the <em>path operations</em> are "cloned" (re-created), not included directly.</p>
+</div>
+<h2 id="check-the-automatic-api-docs">Check the automatic API docs<a class="headerlink" href="#check-the-automatic-api-docs" title="Permanent link">&para;</a></h2>
+<p>Now, run <code>uvicorn</code>, using the module <code>app.main</code> and the variable <code>app</code>:</p>
+<div class="termy">
+
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>uvicorn<span class="w"> </span>app.main:app<span class="w"> </span>--reload
+
+<span class="go">&lt;span style=&quot;color: green;&quot;&gt;INFO&lt;/span&gt;:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)</span>
+</code></pre></div>
+
+</div>
+
+<p>And open the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.</p>
+<p>You will see the automatic API docs, including the paths from all the submodules, using the correct paths (and prefixes) and the correct tags:</p>
+<p><img src="/img/tutorial/bigger-applications/image01.png"></p>
+<h2 id="include-the-same-router-multiple-times-with-different-prefix">Include the same router multiple times with different <code>prefix</code><a class="headerlink" href="#include-the-same-router-multiple-times-with-different-prefix" title="Permanent link">&para;</a></h2>
+<p>You can also use <code>.include_router()</code> multiple times with the <em>same</em> router using different prefixes.</p>
+<p>This could be useful, for example, to expose the same API under different prefixes, e.g. <code>/api/v1</code> and <code>/api/latest</code>.</p>
+<p>This is an advanced usage that you might not really need, but it's there in case you do.</p>
+<h2 id="include-an-apirouter-in-another">Include an <code>APIRouter</code> in another<a class="headerlink" href="#include-an-apirouter-in-another" title="Permanent link">&para;</a></h2>
+<p>The same way you can include an <code>APIRouter</code> in a <code>ReadyAPI</code> application, you can include an <code>APIRouter</code> in another <code>APIRouter</code> using:</p>
+<div class="highlight"><pre><span></span><code><span class="n">router</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">other_router</span><span class="p">)</span>
+</code></pre></div>
+<p>Make sure you do it before including <code>router</code> in the <code>ReadyAPI</code> app, so that the <em>path operations</em> from <code>other_router</code> are also included.</p>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+    <div class="md-copyright__highlight">
+        The ReadyAPI trademark is owned by <a href="https://khulnasoft.com" target="_blank">@khulnasoft</a> and is registered in the US and across other regions
+    </div>
+    
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+        Material for MkDocs
+    </a>
+    
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/khulnasoft/readyapi" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.gg/VQjSZaeJmf" target="_blank" rel="noopener" title="discord.gg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/readyapi" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/khulnasoft" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://dev.to/khulnasoft" target="_blank" rel="noopener" title="dev.to" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M120.12 208.29c-3.88-2.9-7.77-4.35-11.65-4.35H91.03v104.47h17.45c3.88 0 7.77-1.45 11.65-4.35 3.88-2.9 5.82-7.25 5.82-13.06v-69.65c-.01-5.8-1.96-10.16-5.83-13.06zM404.1 32H43.9C19.7 32 .06 51.59 0 75.8v360.4C.06 460.41 19.7 480 43.9 480h360.2c24.21 0 43.84-19.59 43.9-43.8V75.8c-.06-24.21-19.7-43.8-43.9-43.8zM154.2 291.19c0 18.81-11.61 47.31-48.36 47.25h-46.4V172.98h47.38c35.44 0 47.36 28.46 47.37 47.28l.01 70.93zm100.68-88.66H201.6v38.42h32.57v29.57H201.6v38.41h53.29v29.57h-62.18c-11.16.29-20.44-8.53-20.72-19.69V193.7c-.27-11.15 8.56-20.41 19.71-20.69h63.19l-.01 29.52zm103.64 115.29c-13.2 30.75-36.85 24.63-47.44 0l-38.53-144.8h32.57l29.71 113.72 29.57-113.72h32.58l-38.46 144.8z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://medium.com/@khulnasoft" target="_blank" rel="noopener" title="medium.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M180.5 74.262C80.813 74.262 0 155.633 0 256s80.819 181.738 180.5 181.738S361 356.373 361 256 280.191 74.262 180.5 74.262Zm288.25 10.646c-49.845 0-90.245 76.619-90.245 171.095s40.406 171.1 90.251 171.1 90.251-76.619 90.251-171.1H559c0-94.503-40.4-171.095-90.248-171.095Zm139.506 17.821c-17.526 0-31.735 68.628-31.735 153.274s14.2 153.274 31.735 153.274S640 340.631 640 256c0-84.649-14.215-153.271-31.742-153.271Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://khulnasoft.com" target="_blank" rel="noopener" title="khulnasoft.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 20.9 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "content.tabs.link", "navigation.indexes", "content.tooltips", "navigation.path", "content.code.annotate", "content.code.copy", "content.code.select", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      
+        <script src="../../js/termynal.js"></script>
+      
+        <script src="../../js/custom.js"></script>
+      
+    
+  </body>
+</html>

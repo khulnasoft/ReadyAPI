@@ -1,0 +1,5585 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ReadyAPI framework, high performance, easy to learn, fast to code, ready for production">
+      
+      
+      
+        <link rel="canonical" href="https://readyapi.khulnasoft.com/es/deployment/docker/">
+      
+      
+        <link rel="prev" href="../server-workers/">
+      
+      
+        <link rel="next" href="../../how-to/">
+      
+      
+      <link rel="icon" href="../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.4.7">
+    
+    
+      
+        <title>ReadyAPI in Containers - Docker - ReadyAPI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../css/termynal.css">
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-YNEVN69SC3"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-YNEVN69SC3",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-YNEVN69SC3",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#readyapi-in-containers-docker" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<div class="announce-wrapper">
+  <div id="announce-left">
+    <div class="item">
+      <a class="announce-link" href="https://twitter.com/readyapi" target="_blank">
+        <span class="twemoji twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+        </span> Follow <strong>@readyapi</strong> on <strong>Twitter</strong> to stay updated
+      </a>
+    </div>
+    <div class="item">
+      <a class="announce-link" href="https://readyapi.khulnasoft.com/newsletter/">
+        <span class="twemoji">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"/></svg>
+        </span> Subscribe to the <strong>ReadyAPI and friends</strong> newsletter 🎉
+      </a>
+    </div>
+    <div class="item">
+      <iframe style="display: inline-block; vertical-align: middle; border: none; margin-right: 0.5rem;" src="https://github.com/sponsors/khulnasoft/button" title="Sponsor khulnasoft" height="35" width="116" style="border: 0;"></iframe> <a class="announce-link" target="_blank" href="https://github.com/sponsors/khulnasoft">You can now sponsor <strong>ReadyAPI</strong> 🍰</a>
+    </div>
+  </div>
+  <div id="announce-right" style="position: relative;">
+    <div class="item">
+      <a title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway." style="display: block; position: relative;" href="https://cryptapi.io/" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/cryptapi-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Build, run and scale your apps on a modern, reliable, and secure PaaS." style="display: block; position: relative;" href="https://platform.sh/try-it-now/?utm_source=readyapi-signup&utm_medium=banner&utm_campaign=ReadyAPI-signup-June-2023" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/platform-sh-banner.png" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Deploy ReadyAPI on AWS with a few clicks" style="display: block; position: relative;" href="https://www.porter.run" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/porter-banner.png" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Automate ReadyAPI documentation generation with Bump.sh" style="display: block; position: relative;" href="https://bump.sh/readyapi?utm_source=readyapi&utm_medium=referral&utm_campaign=sponsor" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/bump-sh-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Reflex" style="display: block; position: relative;" href="https://reflex.dev" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/reflex-banner.png" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files" style="display: block; position: relative;" href="https://github.com/scalar/scalar/?utm_source=readyapi&utm_medium=website&utm_campaign=top-banner" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/scalar-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Auth, user management and more for your B2B product" style="display: block; position: relative;" href="https://www.propelauth.com/?utm_source=readyapi&utm_campaign=1223&utm_medium=topbanner" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/propelauth-banner.png" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Coherence" style="display: block; position: relative;" href="https://www.withcoherence.com/?utm_medium=advertising&utm_source=readyapi&utm_campaign=banner%20january%2024" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/coherence-banner.png" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Build your next app with ReadyAPI and MongoDB" style="display: block; position: relative;" href="https://www.mongodb.com/developer/languages/python/python-quickstart-readyapi/?utm_campaign=readyapi_framework&utm_source=readyapi_sponsorship&utm_medium=web_referral" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/mongodb-banner.png" />
+      </a>
+    </div>
+  </div>
+</div>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="ReadyAPI" class="md-header__button md-logo" aria-label="ReadyAPI" data-md-component="logo">
+      
+  <img src="../../img/icon-white.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ReadyAPI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ReadyAPI in Containers - Docker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/" hreflang="" class="md-select__link">
+              en - English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/az/" hreflang="" class="md-select__link">
+              az - azərbaycan dili
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/bn/" hreflang="" class="md-select__link">
+              bn - বাংলা
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/de/" hreflang="" class="md-select__link">
+              de - Deutsch
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/es/" hreflang="" class="md-select__link">
+              es - español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/fa/" hreflang="" class="md-select__link">
+              fa - فارسی
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/fr/" hreflang="" class="md-select__link">
+              fr - français
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/he/" hreflang="" class="md-select__link">
+              he - עברית
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/hu/" hreflang="" class="md-select__link">
+              hu - magyar
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/id/" hreflang="" class="md-select__link">
+              id - Bahasa Indonesia
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/it/" hreflang="" class="md-select__link">
+              it - italiano
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/ja/" hreflang="" class="md-select__link">
+              ja - 日本語
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/ko/" hreflang="" class="md-select__link">
+              ko - 한국어
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/pl/" hreflang="" class="md-select__link">
+              pl - Polski
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/pt/" hreflang="" class="md-select__link">
+              pt - português
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/ru/" hreflang="" class="md-select__link">
+              ru - русский язык
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/tr/" hreflang="" class="md-select__link">
+              tr - Türkçe
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/uk/" hreflang="" class="md-select__link">
+              uk - українська мова
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/ur/" hreflang="" class="md-select__link">
+              ur - اردو
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/vi/" hreflang="" class="md-select__link">
+              vi - Tiếng Việt
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/yo/" hreflang="" class="md-select__link">
+              yo - Yorùbá
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/zh/" hreflang="" class="md-select__link">
+              zh - 简体中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/zh-hant/" hreflang="" class="md-select__link">
+              zh-hant - 繁體中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/em/" hreflang="" class="md-select__link">
+              😉
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/khulnasoft/readyapi" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    khulnasoft/readyapi
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  ReadyAPI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../features/" class="md-tabs__link">
+        
+  
+    
+  
+  Features
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../learn/" class="md-tabs__link">
+          
+  
+    
+  
+  Aprender
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reference/" class="md-tabs__link">
+          
+  
+    
+  
+  Reference - Code API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../readyapi-people/" class="md-tabs__link">
+        
+  
+    
+  
+  ReadyAPI People
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/" class="md-tabs__link">
+          
+  
+    
+  
+  Recursos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../about/" class="md-tabs__link">
+          
+  
+    
+  
+  Acerca de
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../help/" class="md-tabs__link">
+          
+  
+    
+  
+  Ayuda
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release-notes/" class="md-tabs__link">
+        
+  
+    
+  
+  Release Notes
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ReadyAPI" class="md-nav__button md-logo" aria-label="ReadyAPI" data-md-component="logo">
+      
+  <img src="../../img/icon-white.svg" alt="logo">
+
+    </a>
+    ReadyAPI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/khulnasoft/readyapi" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    khulnasoft/readyapi
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ReadyAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../learn/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Aprender
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Aprender
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python-types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introducción a los Tipos de Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concurrencia y async / await
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tutorial/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Tutorial - Guía de Usuario
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorial - Guía de Usuario
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/first-steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Primeros pasos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/path-params/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parámetros de path
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/query-params/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parámetros de query
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/body/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request Body
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/query-params-str-validations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Query Parameters and String Validations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/path-params-numeric-validations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Path Parameters and Numeric Validations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/body-multiple-params/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Body - Multiple Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/body-fields/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Body - Fields
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/body-nested-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Body - Nested Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/schema-extra-example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Declare Request Example Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/extra-data-types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extra Data Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/cookie-params/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cookie Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/header-params/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Header Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/response-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response Model - Return Type
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/extra-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extra Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/response-status-code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response Status Code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/request-forms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Form Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/request-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/request-forms-and-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request Forms and Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/handling-errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Handling Errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/path-operation-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Path Operation Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/encoder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JSON Compatible Encoder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/body-updates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Body - Updates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_25" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tutorial/dependencies/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Dependencies
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_25" id="__nav_3_4_25_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_25">
+            <span class="md-nav__icon md-icon"></span>
+            Dependencies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/dependencies/classes-as-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classes as Dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/dependencies/sub-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sub-dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/dependencies/dependencies-in-path-operation-decorators/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dependencies in path operation decorators
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/dependencies/global-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Global Dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/dependencies/dependencies-with-yield/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dependencies with yield
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_26" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tutorial/security/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_26" id="__nav_3_4_26_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_26">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/security/first-steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security - First Steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/security/get-current-user/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get Current User
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/security/simple-oauth2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple OAuth2 with Password and Bearer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/security/oauth2-jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OAuth2 with Password (and hashing), Bearer with JWT tokens
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/middleware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Middleware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/cors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CORS (Cross-Origin Resource Sharing)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/sql-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL (Relational) Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/bigger-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bigger Applications - Multiple Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/background-tasks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Background Tasks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/metadata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadata and Docs URLs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/static-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Static Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/debugging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../advanced/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Guía de Usuario Avanzada
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Guía de Usuario Avanzada
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/path-operation-advanced-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuración avanzada de las operaciones de path
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/additional-status-codes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Códigos de estado adicionales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/response-directly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Devolver una respuesta directamente
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/custom-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Response - HTML, Stream, File, others
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/additional-responses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Additional Responses in OpenAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/response-cookies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response Cookies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/response-headers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Headers de Respuesta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/response-change-status-code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response - Cambiar el Status Code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/advanced-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_11" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../advanced/security/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Seguridad Avanzada
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5_11" id="__nav_3_5_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_11">
+            <span class="md-nav__icon md-icon"></span>
+            Seguridad Avanzada
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/security/oauth2-scopes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OAuth2 scopes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/security/http-basic-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP Basic Auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/using-request-directly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using the Request Directly
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/dataclasses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using Dataclasses
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/middleware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Middleware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/sub-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sub Applications - Mounts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/behind-a-proxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Behind a Proxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/websockets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WebSockets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lifespan Events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/testing-websockets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing WebSockets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/testing-events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing Events: startup - shutdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/testing-dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing Dependencies with Overrides
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/testing-database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing a Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/async-tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings and Environment Variables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/openapi-callbacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenAPI Callbacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/openapi-webhooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenAPI Webhooks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/wsgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Including WSGI - Flask, Django, others
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/generate-clients/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Generate Clients
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Despliegue - Introducción
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Despliegue - Introducción
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acerca de las versiones de ReadyAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../https/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About HTTPS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manually/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run a Server Manually - Uvicorn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployments Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy ReadyAPI on Cloud Providers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../server-workers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server Workers - Gunicorn with Uvicorn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ReadyAPI in Containers - Docker
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ReadyAPI in Containers - Docker
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-container" class="md-nav__link">
+    What is a Container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-container-image" class="md-nav__link">
+    What is a Container Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-images" class="md-nav__link">
+    Container Images
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#containers-and-processes" class="md-nav__link">
+    Containers and Processes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-docker-image-for-readyapi" class="md-nav__link">
+    Build a Docker Image for ReadyAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="Build a Docker Image for ReadyAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#package-requirements" class="md-nav__link">
+    Package Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-readyapi-code" class="md-nav__link">
+    Create the ReadyAPI Code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    Dockerfile
+  </a>
+  
+    <nav class="md-nav" aria-label="Dockerfile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behind-a-tls-termination-proxy" class="md-nav__link">
+    Behind a TLS Termination Proxy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-cache" class="md-nav__link">
+    Docker Cache
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-the-docker-image" class="md-nav__link">
+    Build the Docker Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-the-docker-container" class="md-nav__link">
+    Start the Docker Container
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-it" class="md-nav__link">
+    Check it
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-api-docs" class="md-nav__link">
+    Interactive API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternative-api-docs" class="md-nav__link">
+    Alternative API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-docker-image-with-a-single-file-readyapi" class="md-nav__link">
+    Build a Docker Image with a Single-File ReadyAPI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-concepts" class="md-nav__link">
+    Deployment Concepts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    HTTPS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-startup-and-restarts" class="md-nav__link">
+    Running on Startup and Restarts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replication-number-of-processes" class="md-nav__link">
+    Replication - Number of Processes
+  </a>
+  
+    <nav class="md-nav" aria-label="Replication - Number of Processes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-balancer" class="md-nav__link">
+    Load Balancer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-load-balancer-multiple-worker-containers" class="md-nav__link">
+    One Load Balancer - Multiple Worker Containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-process-per-container" class="md-nav__link">
+    One Process per Container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#containers-with-multiple-processes-and-special-cases" class="md-nav__link">
+    Containers with Multiple Processes and Special Cases
+  </a>
+  
+    <nav class="md-nav" aria-label="Containers with Multiple Processes and Special Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-simple-app" class="md-nav__link">
+    A Simple App
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    Docker Compose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prometheus-and-other-reasons" class="md-nav__link">
+    Prometheus and Other Reasons
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    Memory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#previous-steps-before-starting-and-containers" class="md-nav__link">
+    Previous Steps Before Starting and Containers
+  </a>
+  
+    <nav class="md-nav" aria-label="Previous Steps Before Starting and Containers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-containers" class="md-nav__link">
+    Multiple Containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-container" class="md-nav__link">
+    Single Container
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#official-docker-image-with-gunicorn-uvicorn" class="md-nav__link">
+    Official Docker Image with Gunicorn - Uvicorn
+  </a>
+  
+    <nav class="md-nav" aria-label="Official Docker Image with Gunicorn - Uvicorn">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#number-of-processes-on-the-official-docker-image" class="md-nav__link">
+    Number of Processes on the Official Docker Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-dockerfile" class="md-nav__link">
+    Create a Dockerfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigger-applications" class="md-nav__link">
+    Bigger Applications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    When to Use
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-the-container-image" class="md-nav__link">
+    Deploy the Container Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-image-with-poetry" class="md-nav__link">
+    Docker Image with Poetry
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Image with Poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behind-a-tls-termination-proxy-poetry" class="md-nav__link">
+    Behind a TLS Termination Proxy - Poetry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recap" class="md-nav__link">
+    Recap
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../how-to/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    How To - Recipes
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            How To - Recipes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/general/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General - How To - Recipes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/graphql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GraphQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/custom-request-and-route/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Request and APIRoute class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/conditional-openapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conditional OpenAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/extending-openapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extending OpenAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/separate-openapi-schemas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Separate OpenAPI Schemas for Input and Output or Not
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/custom-docs-ui-assets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Docs UI Static Assets (Self-Hosting)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/configure-swagger-ui/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure Swagger UI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/sql-databases-peewee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ~~SQL (Relational) Databases with Peewee~~ (deprecated)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/async-sql-encode-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ~~Async SQL (Relational) Databases with Encode/Databases~~ (deprecated)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/nosql-databases-couchbase/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ~~NoSQL (Distributed / Big Data) Databases with Couchbase~~ (deprecated)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Reference - Code API
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference - Code API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/readyapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `ReadyAPI` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/status/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Status Codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/uploadfile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `UploadFile` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/exceptions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exceptions - `HTTPException` and `WebSocketException`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dependencies - `Depends()` and `Security()`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/apirouter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `APIRouter` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/background/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Background Tasks - `BackgroundTasks`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/request/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `Request` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/websockets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WebSockets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/httpconnection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `HTTPConnection` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    `Response` class
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/responses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Response Classes - File, HTML, Redirect, Streaming, etc.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/middleware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Middleware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_16" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/openapi/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    OpenAPI
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_16" id="__nav_4_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_16">
+            <span class="md-nav__icon md-icon"></span>
+            OpenAPI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/openapi/docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenAPI `docs`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/openapi/models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenAPI `models`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security Tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/encoders/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Encoders - `jsonable_encoder`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/staticfiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Static Files - `StaticFiles`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/templating/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Templating - `Jinja2Templates`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/testclient/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Client - `TestClient`
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../readyapi-people/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ReadyAPI People
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../resources/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Recursos
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Recursos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project-generation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Full Stack ReadyAPI Template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../external-links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enlaces Externos y Artículos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../newsletter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boletín de Noticias de ReadyAPI y amigos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../about/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Acerca de
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Acerca de
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../alternatives/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alternatives, Inspiration and Comparisons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history-design-future/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    History, Design and Future
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../benchmarks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Benchmarks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../help/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Ayuda
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Ayuda
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../help-readyapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Help ReadyAPI - Get Help
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development - Contributing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Notes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-container" class="md-nav__link">
+    What is a Container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-container-image" class="md-nav__link">
+    What is a Container Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-images" class="md-nav__link">
+    Container Images
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#containers-and-processes" class="md-nav__link">
+    Containers and Processes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-docker-image-for-readyapi" class="md-nav__link">
+    Build a Docker Image for ReadyAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="Build a Docker Image for ReadyAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#package-requirements" class="md-nav__link">
+    Package Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-readyapi-code" class="md-nav__link">
+    Create the ReadyAPI Code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    Dockerfile
+  </a>
+  
+    <nav class="md-nav" aria-label="Dockerfile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behind-a-tls-termination-proxy" class="md-nav__link">
+    Behind a TLS Termination Proxy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-cache" class="md-nav__link">
+    Docker Cache
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-the-docker-image" class="md-nav__link">
+    Build the Docker Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-the-docker-container" class="md-nav__link">
+    Start the Docker Container
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-it" class="md-nav__link">
+    Check it
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-api-docs" class="md-nav__link">
+    Interactive API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternative-api-docs" class="md-nav__link">
+    Alternative API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-docker-image-with-a-single-file-readyapi" class="md-nav__link">
+    Build a Docker Image with a Single-File ReadyAPI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-concepts" class="md-nav__link">
+    Deployment Concepts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    HTTPS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-startup-and-restarts" class="md-nav__link">
+    Running on Startup and Restarts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replication-number-of-processes" class="md-nav__link">
+    Replication - Number of Processes
+  </a>
+  
+    <nav class="md-nav" aria-label="Replication - Number of Processes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-balancer" class="md-nav__link">
+    Load Balancer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-load-balancer-multiple-worker-containers" class="md-nav__link">
+    One Load Balancer - Multiple Worker Containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-process-per-container" class="md-nav__link">
+    One Process per Container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#containers-with-multiple-processes-and-special-cases" class="md-nav__link">
+    Containers with Multiple Processes and Special Cases
+  </a>
+  
+    <nav class="md-nav" aria-label="Containers with Multiple Processes and Special Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-simple-app" class="md-nav__link">
+    A Simple App
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    Docker Compose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prometheus-and-other-reasons" class="md-nav__link">
+    Prometheus and Other Reasons
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    Memory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#previous-steps-before-starting-and-containers" class="md-nav__link">
+    Previous Steps Before Starting and Containers
+  </a>
+  
+    <nav class="md-nav" aria-label="Previous Steps Before Starting and Containers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-containers" class="md-nav__link">
+    Multiple Containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-container" class="md-nav__link">
+    Single Container
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#official-docker-image-with-gunicorn-uvicorn" class="md-nav__link">
+    Official Docker Image with Gunicorn - Uvicorn
+  </a>
+  
+    <nav class="md-nav" aria-label="Official Docker Image with Gunicorn - Uvicorn">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#number-of-processes-on-the-official-docker-image" class="md-nav__link">
+    Number of Processes on the Official Docker Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-dockerfile" class="md-nav__link">
+    Create a Dockerfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigger-applications" class="md-nav__link">
+    Bigger Applications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    When to Use
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-the-container-image" class="md-nav__link">
+    Deploy the Container Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-image-with-poetry" class="md-nav__link">
+    Docker Image with Poetry
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Image with Poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behind-a-tls-termination-proxy-poetry" class="md-nav__link">
+    Behind a TLS Termination Proxy - Poetry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recap" class="md-nav__link">
+    Recap
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="readyapi-in-containers-docker">ReadyAPI in Containers - Docker<a class="headerlink" href="#readyapi-in-containers-docker" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The current page still doesn't have a translation for this language.</p>
+<p>But you can help translating it: <a class="internal-link" href="https://readyapi.khulnasoft.com/contributing/" target="_blank">Contributing</a>.</p>
+</div>
+<p>When deploying ReadyAPI applications a common approach is to build a <strong>Linux container image</strong>. It's normally done using <a href="https://www.docker.com/" class="external-link" target="_blank"><strong>Docker</strong></a>. You can then deploy that container image in one of a few possible ways.</p>
+<p>Using Linux containers has several advantages including <strong>security</strong>, <strong>replicability</strong>, <strong>simplicity</strong>, and others.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In a hurry and already know this stuff? Jump to the <a href="#build-a-docker-image-for-readyapi"><code>Dockerfile</code> below 👇</a>.</p>
+</div>
+<details>
+<summary>Dockerfile Preview 👀</summary>
+
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.9</span>
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/code</span>
+
+<span class="k">COPY</span><span class="w"> </span>./requirements.txt<span class="w"> </span>/code/requirements.txt
+
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--upgrade<span class="w"> </span>-r<span class="w"> </span>/code/requirements.txt
+
+<span class="k">COPY</span><span class="w"> </span>./app<span class="w"> </span>/code/app
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.main:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;80&quot;</span><span class="p">]</span>
+
+<span class="c"># If running behind a proxy like Nginx or Traefik add --proxy-headers</span>
+<span class="c"># CMD [&quot;uvicorn&quot;, &quot;app.main:app&quot;, &quot;--host&quot;, &quot;0.0.0.0&quot;, &quot;--port&quot;, &quot;80&quot;, &quot;--proxy-headers&quot;]</span>
+</code></pre></div>
+
+</details>
+
+<h2 id="what-is-a-container">What is a Container<a class="headerlink" href="#what-is-a-container" title="Permanent link">&para;</a></h2>
+<p>Containers (mainly Linux containers) are a very <strong>lightweight</strong> way to package applications including all their dependencies and necessary files while keeping them isolated from other containers (other applications or components) in the same system.</p>
+<p>Linux containers run using the same Linux kernel of the host (machine, virtual machine, cloud server, etc). This just means that they are very lightweight (compared to full virtual machines emulating an entire operating system).</p>
+<p>This way, containers consume <strong>little resources</strong>, an amount comparable to running the processes directly (a virtual machine would consume much more).</p>
+<p>Containers also have their own <strong>isolated</strong> running processes (commonly just one process), file system, and network, simplifying deployment, security, development, etc.</p>
+<h2 id="what-is-a-container-image">What is a Container Image<a class="headerlink" href="#what-is-a-container-image" title="Permanent link">&para;</a></h2>
+<p>A <strong>container</strong> is run from a <strong>container image</strong>.</p>
+<p>A container image is a <strong>static</strong> version of all the files, environment variables, and the default command/program that should be present in a container. <strong>Static</strong> here means that the container <strong>image</strong> is not running, it's not being executed, it's only the packaged files and metadata.</p>
+<p>In contrast to a "<strong>container image</strong>" that is the stored static contents, a "<strong>container</strong>" normally refers to the running instance, the thing that is being <strong>executed</strong>.</p>
+<p>When the <strong>container</strong> is started and running (started from a <strong>container image</strong>) it could create or change files, environment variables, etc. Those changes will exist only in that container, but would not persist in the underlying container image (would not be saved to disk).</p>
+<p>A container image is comparable to the <strong>program</strong> file and contents, e.g. <code>python</code> and some file <code>main.py</code>.</p>
+<p>And the <strong>container</strong> itself (in contrast to the <strong>container image</strong>) is the actual running instance of the image, comparable to a <strong>process</strong>. In fact, a container is running only when it has a <strong>process running</strong> (and normally it's only a single process). The container stops when there's no process running in it.</p>
+<h2 id="container-images">Container Images<a class="headerlink" href="#container-images" title="Permanent link">&para;</a></h2>
+<p>Docker has been one of the main tools to create and manage <strong>container images</strong> and <strong>containers</strong>.</p>
+<p>And there's a public <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a> with pre-made <strong>official container images</strong> for many tools, environments, databases, and applications.</p>
+<p>For example, there's an official <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Python Image</a>.</p>
+<p>And there are many other images for different things like databases, for example for:</p>
+<ul>
+<li><a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a></li>
+<li><a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a></li>
+<li><a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a></li>
+<li><a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, etc.</li>
+</ul>
+<p>By using a pre-made container image it's very easy to <strong>combine</strong> and use different tools. For example, to try out a new database. In most cases, you can use the <strong>official images</strong>, and just configure them with environment variables.</p>
+<p>That way, in many cases you can learn about containers and Docker and re-use that knowledge with many different tools and components.</p>
+<p>So, you would run <strong>multiple containers</strong> with different things, like a database, a Python application, a web server with a React frontend application, and connect them together via their internal network.</p>
+<p>All the container management systems (like Docker or Kubernetes) have these networking features integrated into them.</p>
+<h2 id="containers-and-processes">Containers and Processes<a class="headerlink" href="#containers-and-processes" title="Permanent link">&para;</a></h2>
+<p>A <strong>container image</strong> normally includes in its metadata the default program or command that should be run when the <strong>container</strong> is started and the parameters to be passed to that program. Very similar to what would be if it was in the command line.</p>
+<p>When a <strong>container</strong> is started, it will run that command/program (although you can override it and make it run a different command/program).</p>
+<p>A container is running as long as the <strong>main process</strong> (command or program) is running.</p>
+<p>A container normally has a <strong>single process</strong>, but it's also possible to start subprocesses from the main process, and that way you will have <strong>multiple processes</strong> in the same container.</p>
+<p>But it's not possible to have a running container without <strong>at least one running process</strong>. If the main process stops, the container stops.</p>
+<h2 id="build-a-docker-image-for-readyapi">Build a Docker Image for ReadyAPI<a class="headerlink" href="#build-a-docker-image-for-readyapi" title="Permanent link">&para;</a></h2>
+<p>Okay, let's build something now! 🚀</p>
+<p>I'll show you how to build a <strong>Docker image</strong> for ReadyAPI <strong>from scratch</strong>, based on the <strong>official Python</strong> image.</p>
+<p>This is what you would want to do in <strong>most cases</strong>, for example:</p>
+<ul>
+<li>Using <strong>Kubernetes</strong> or similar tools</li>
+<li>When running on a <strong>Raspberry Pi</strong></li>
+<li>Using a cloud service that would run a container image for you, etc.</li>
+</ul>
+<h3 id="package-requirements">Package Requirements<a class="headerlink" href="#package-requirements" title="Permanent link">&para;</a></h3>
+<p>You would normally have the <strong>package requirements</strong> for your application in some file.</p>
+<p>It would depend mainly on the tool you use to <strong>install</strong> those requirements.</p>
+<p>The most common way to do it is to have a file <code>requirements.txt</code> with the package names and their versions, one per line.</p>
+<p>You would of course use the same ideas you read in <a class="internal-link" href="../versions/" target="_blank">About ReadyAPI versions</a> to set the ranges of versions.</p>
+<p>For example, your <code>requirements.txt</code> could look like:</p>
+<div class="highlight"><pre><span></span><code>readyapi&gt;=0.68.0,&lt;0.69.0
+pydantic&gt;=1.8.0,&lt;2.0.0
+uvicorn&gt;=0.15.0,&lt;0.16.0
+</code></pre></div>
+<p>And you would normally install those package dependencies with <code>pip</code>, for example:</p>
+<div class="termy">
+
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<span class="go">---&gt; 100%</span>
+<span class="go">Successfully installed readyapi pydantic uvicorn</span>
+</code></pre></div>
+
+</div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>There are other formats and tools to define and install package dependencies.</p>
+<p>I'll show you an example using Poetry later in a section below. 👇</p>
+</div>
+<h3 id="create-the-readyapi-code">Create the <strong>ReadyAPI</strong> Code<a class="headerlink" href="#create-the-readyapi-code" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Create an <code>app</code> directory and enter it.</li>
+<li>Create an empty file <code>__init__.py</code>.</li>
+<li>Create a <code>main.py</code> file with:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">readyapi</span> <span class="kn">import</span> <span class="n">ReadyAPI</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">ReadyAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Hello&quot;</span><span class="p">:</span> <span class="s2">&quot;World&quot;</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="n">q</span><span class="p">}</span>
+</code></pre></div>
+<h3 id="dockerfile">Dockerfile<a class="headerlink" href="#dockerfile" title="Permanent link">&para;</a></h3>
+<p>Now in the same project directory create a file <code>Dockerfile</code> with:</p>
+<div class="annotate highlight"><pre><span></span><code><span class="c"># (1)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.9</span>
+
+<span class="c"># (2)</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/code</span>
+
+<span class="c"># (3)</span>
+<span class="k">COPY</span><span class="w"> </span>./requirements.txt<span class="w"> </span>/code/requirements.txt
+
+<span class="c"># (4)</span>
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--upgrade<span class="w"> </span>-r<span class="w"> </span>/code/requirements.txt
+
+<span class="c"># (5)</span>
+<span class="k">COPY</span><span class="w"> </span>./app<span class="w"> </span>/code/app
+
+<span class="c"># (6)</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.main:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;80&quot;</span><span class="p">]</span>
+</code></pre></div>
+<ol>
+<li>
+<p>Start from the official Python base image.</p>
+</li>
+<li>
+<p>Set the current working directory to <code>/code</code>.</p>
+<p>This is where we'll put the <code>requirements.txt</code> file and the <code>app</code> directory.</p>
+</li>
+<li>
+<p>Copy the file with the requirements to the <code>/code</code> directory.</p>
+<p>Copy <strong>only</strong> the file with the requirements first, not the rest of the code.</p>
+<p>As this file <strong>doesn't change often</strong>, Docker will detect it and use the <strong>cache</strong> for this step, enabling the cache for the next step too.</p>
+</li>
+<li>
+<p>Install the package dependencies in the requirements file.</p>
+<p>The <code>--no-cache-dir</code> option tells <code>pip</code> to not save the downloaded packages locally, as that is only if <code>pip</code> was going to be run again to install the same packages, but that's not the case when working with containers.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>--no-cache-dir</code> is only related to <code>pip</code>, it has nothing to do with Docker or containers.</p>
+</div>
+<p>The <code>--upgrade</code> option tells <code>pip</code> to upgrade the packages if they are already installed.</p>
+<p>Because the previous step copying the file could be detected by the <strong>Docker cache</strong>, this step will also <strong>use the Docker cache</strong> when available.</p>
+<p>Using the cache in this step will <strong>save</strong> you a lot of <strong>time</strong> when building the image again and again during development, instead of <strong>downloading and installing</strong> all the dependencies <strong>every time</strong>.</p>
+</li>
+<li>
+<p>Copy the <code>./app</code> directory inside the <code>/code</code> directory.</p>
+<p>As this has all the code which is what <strong>changes most frequently</strong> the Docker <strong>cache</strong> won't be used for this or any <strong>following steps</strong> easily.</p>
+<p>So, it's important to put this <strong>near the end</strong> of the <code>Dockerfile</code>, to optimize the container image build times.</p>
+</li>
+<li>
+<p>Set the <strong>command</strong> to run the <code>uvicorn</code> server.</p>
+<p><code>CMD</code> takes a list of strings, each of these strings is what you would type in the command line separated by spaces.</p>
+<p>This command will be run from the <strong>current working directory</strong>, the same <code>/code</code> directory you set above with <code>WORKDIR /code</code>.</p>
+<p>Because the program will be started at <code>/code</code> and inside of it is the directory <code>./app</code> with your code, <strong>Uvicorn</strong> will be able to see and <strong>import</strong> <code>app</code> from <code>app.main</code>.</p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Review what each line does by clicking each number bubble in the code. 👆</p>
+</div>
+<p>You should now have a directory structure like:</p>
+<div class="highlight"><pre><span></span><code>.
+├── app
+│   ├── __init__.py
+│   └── main.py
+├── Dockerfile
+└── requirements.txt
+</code></pre></div>
+<h4 id="behind-a-tls-termination-proxy">Behind a TLS Termination Proxy<a class="headerlink" href="#behind-a-tls-termination-proxy" title="Permanent link">&para;</a></h4>
+<p>If you are running your container behind a TLS Termination Proxy (load balancer) like Nginx or Traefik, add the option <code>--proxy-headers</code>, this will tell Uvicorn to trust the headers sent by that proxy telling it that the application is running behind HTTPS, etc.</p>
+<div class="highlight"><pre><span></span><code><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.main:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--proxy-headers&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;80&quot;</span><span class="p">]</span>
+</code></pre></div>
+<h4 id="docker-cache">Docker Cache<a class="headerlink" href="#docker-cache" title="Permanent link">&para;</a></h4>
+<p>There's an important trick in this <code>Dockerfile</code>, we first copy the <strong>file with the dependencies alone</strong>, not the rest of the code. Let me tell you why is that.</p>
+<div class="highlight"><pre><span></span><code><span class="k">COPY</span><span class="w"> </span>./requirements.txt<span class="w"> </span>/code/requirements.txt
+</code></pre></div>
+<p>Docker and other tools <strong>build</strong> these container images <strong>incrementally</strong>, adding <strong>one layer on top of the other</strong>, starting from the top of the <code>Dockerfile</code> and adding any files created by each of the instructions of the <code>Dockerfile</code>.</p>
+<p>Docker and similar tools also use an <strong>internal cache</strong> when building the image, if a file hasn't changed since the last time building the container image, then it will <strong>re-use the same layer</strong> created the last time, instead of copying the file again and creating a new layer from scratch.</p>
+<p>Just avoiding the copy of files doesn't necessarily improve things too much, but because it used the cache for that step, it can <strong>use the cache for the next step</strong>. For example, it could use the cache for the instruction that installs dependencies with:</p>
+<div class="highlight"><pre><span></span><code><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--upgrade<span class="w"> </span>-r<span class="w"> </span>/code/requirements.txt
+</code></pre></div>
+<p>The file with the package requirements <strong>won't change frequently</strong>. So, by copying only that file, Docker will be able to <strong>use the cache</strong> for that step.</p>
+<p>And then, Docker will be able to <strong>use the cache for the next step</strong> that downloads and install those dependencies. And here's where we <strong>save a lot of time</strong>. ✨ ...and avoid boredom waiting. 😪😆</p>
+<p>Downloading and installing the package dependencies <strong>could take minutes</strong>, but using the <strong>cache</strong> would <strong>take seconds</strong> at most.</p>
+<p>And as you would be building the container image again and again during development to check that your code changes are working, there's a lot of accumulated time this would save.</p>
+<p>Then, near the end of the <code>Dockerfile</code>, we copy all the code. As this is what <strong>changes most frequently</strong>, we put it near the end, because almost always, anything after this step will not be able to use the cache.</p>
+<div class="highlight"><pre><span></span><code><span class="k">COPY</span><span class="w"> </span>./app<span class="w"> </span>/code/app
+</code></pre></div>
+<h3 id="build-the-docker-image">Build the Docker Image<a class="headerlink" href="#build-the-docker-image" title="Permanent link">&para;</a></h3>
+<p>Now that all the files are in place, let's build the container image.</p>
+<ul>
+<li>Go to the project directory (in where your <code>Dockerfile</code> is, containing your <code>app</code> directory).</li>
+<li>Build your ReadyAPI image:</li>
+</ul>
+<div class="termy">
+
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>myimage<span class="w"> </span>.
+
+<span class="go">---&gt; 100%</span>
+</code></pre></div>
+
+</div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Notice the <code>.</code> at the end, it's equivalent to <code>./</code>, it tells Docker the directory to use to build the container image.</p>
+<p>In this case, it's the same current directory (<code>.</code>).</p>
+</div>
+<h3 id="start-the-docker-container">Start the Docker Container<a class="headerlink" href="#start-the-docker-container" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Run a container based on your image:</li>
+</ul>
+<div class="termy">
+
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>mycontainer<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>myimage
+</code></pre></div>
+
+</div>
+
+<h2 id="check-it">Check it<a class="headerlink" href="#check-it" title="Permanent link">&para;</a></h2>
+<p>You should be able to check it in your Docker container's URL, for example: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> or <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (or equivalent, using your Docker host).</p>
+<p>You will see something like:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;item_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;somequery&quot;</span><span class="p">}</span>
+</code></pre></div>
+<h2 id="interactive-api-docs">Interactive API docs<a class="headerlink" href="#interactive-api-docs" title="Permanent link">&para;</a></h2>
+<p>Now you can go to <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> or <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (or equivalent, using your Docker host).</p>
+<p>You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):</p>
+<p><img alt="Swagger UI" src="https://readyapi.khulnasoft.com/img/index/index-01-swagger-ui-simple.png" /></p>
+<h2 id="alternative-api-docs">Alternative API docs<a class="headerlink" href="#alternative-api-docs" title="Permanent link">&para;</a></h2>
+<p>And you can also go to <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> or <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (or equivalent, using your Docker host).</p>
+<p>You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):</p>
+<p><img alt="ReDoc" src="https://readyapi.khulnasoft.com/img/index/index-02-redoc-simple.png" /></p>
+<h2 id="build-a-docker-image-with-a-single-file-readyapi">Build a Docker Image with a Single-File ReadyAPI<a class="headerlink" href="#build-a-docker-image-with-a-single-file-readyapi" title="Permanent link">&para;</a></h2>
+<p>If your ReadyAPI is a single file, for example, <code>main.py</code> without an <code>./app</code> directory, your file structure could look like this:</p>
+<div class="highlight"><pre><span></span><code>.
+├── Dockerfile
+├── main.py
+└── requirements.txt
+</code></pre></div>
+<p>Then you would just have to change the corresponding paths to copy the file inside the <code>Dockerfile</code>:</p>
+<div class="annotate highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.9</span>
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/code</span>
+
+<span class="k">COPY</span><span class="w"> </span>./requirements.txt<span class="w"> </span>/code/requirements.txt
+
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--upgrade<span class="w"> </span>-r<span class="w"> </span>/code/requirements.txt
+
+<span class="c"># (1)</span>
+<span class="hll"><span class="k">COPY</span><span class="w"> </span>./main.py<span class="w"> </span>/code/
+</span>
+<span class="c"># (2)</span>
+<span class="hll"><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;main:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;80&quot;</span><span class="p">]</span>
+</span></code></pre></div>
+<ol>
+<li>
+<p>Copy the <code>main.py</code> file to the <code>/code</code> directory directly (without any <code>./app</code> directory).</p>
+</li>
+<li>
+<p>Run Uvicorn and tell it to import the <code>app</code> object from <code>main</code> (instead of importing from <code>app.main</code>).</p>
+</li>
+</ol>
+<p>Then adjust the Uvicorn command to use the new module <code>main</code> instead of <code>app.main</code> to import the ReadyAPI object <code>app</code>.</p>
+<h2 id="deployment-concepts">Deployment Concepts<a class="headerlink" href="#deployment-concepts" title="Permanent link">&para;</a></h2>
+<p>Let's talk again about some of the same <a class="internal-link" href="../concepts/" target="_blank">Deployment Concepts</a> in terms of containers.</p>
+<p>Containers are mainly a tool to simplify the process of <strong>building and deploying</strong> an application, but they don't enforce a particular approach to handle these <strong>deployment concepts</strong>, and there are several possible strategies.</p>
+<p>The <strong>good news</strong> is that with each different strategy there's a way to cover all of the deployment concepts. 🎉</p>
+<p>Let's review these <strong>deployment concepts</strong> in terms of containers:</p>
+<ul>
+<li>HTTPS</li>
+<li>Running on startup</li>
+<li>Restarts</li>
+<li>Replication (the number of processes running)</li>
+<li>Memory</li>
+<li>Previous steps before starting</li>
+</ul>
+<h2 id="https">HTTPS<a class="headerlink" href="#https" title="Permanent link">&para;</a></h2>
+<p>If we focus just on the <strong>container image</strong> for a ReadyAPI application (and later the running <strong>container</strong>), HTTPS normally would be handled <strong>externally</strong> by another tool.</p>
+<p>It could be another container, for example with <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>, handling <strong>HTTPS</strong> and <strong>automatic</strong> acquisition of <strong>certificates</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Traefik has integrations with Docker, Kubernetes, and others, so it's very easy to set up and configure HTTPS for your containers with it.</p>
+</div>
+<p>Alternatively, HTTPS could be handled by a cloud provider as one of their services (while still running the application in a container).</p>
+<h2 id="running-on-startup-and-restarts">Running on Startup and Restarts<a class="headerlink" href="#running-on-startup-and-restarts" title="Permanent link">&para;</a></h2>
+<p>There is normally another tool in charge of <strong>starting and running</strong> your container.</p>
+<p>It could be <strong>Docker</strong> directly, <strong>Docker Compose</strong>, <strong>Kubernetes</strong>, a <strong>cloud service</strong>, etc.</p>
+<p>In most (or all) cases, there's a simple option to enable running the container on startup and enabling restarts on failures. For example, in Docker, it's the command line option <code>--restart</code>.</p>
+<p>Without using containers, making applications run on startup and with restarts can be cumbersome and difficult. But when <strong>working with containers</strong> in most cases that functionality is included by default. ✨</p>
+<h2 id="replication-number-of-processes">Replication - Number of Processes<a class="headerlink" href="#replication-number-of-processes" title="Permanent link">&para;</a></h2>
+<p>If you have a <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr> of machines with <strong>Kubernetes</strong>, Docker Swarm Mode, Nomad, or another similar complex system to manage distributed containers on multiple machines, then you will probably want to <strong>handle replication</strong> at the <strong>cluster level</strong> instead of using a <strong>process manager</strong> (like Gunicorn with workers) in each container.</p>
+<p>One of those distributed container management systems like Kubernetes normally has some integrated way of handling <strong>replication of containers</strong> while still supporting <strong>load balancing</strong> for the incoming requests. All at the <strong>cluster level</strong>.</p>
+<p>In those cases, you would probably want to build a <strong>Docker image from scratch</strong> as <a href="#dockerfile">explained above</a>, installing your dependencies, and running <strong>a single Uvicorn process</strong> instead of running something like Gunicorn with Uvicorn workers.</p>
+<h3 id="load-balancer">Load Balancer<a class="headerlink" href="#load-balancer" title="Permanent link">&para;</a></h3>
+<p>When using containers, you would normally have some component <strong>listening on the main port</strong>. It could possibly be another container that is also a <strong>TLS Termination Proxy</strong> to handle <strong>HTTPS</strong> or some similar tool.</p>
+<p>As this component would take the <strong>load</strong> of requests and distribute that among the workers in a (hopefully) <strong>balanced</strong> way, it is also commonly called a <strong>Load Balancer</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The same <strong>TLS Termination Proxy</strong> component used for HTTPS would probably also be a <strong>Load Balancer</strong>.</p>
+</div>
+<p>And when working with containers, the same system you use to start and manage them would already have internal tools to transmit the <strong>network communication</strong> (e.g. HTTP requests) from that <strong>load balancer</strong> (that could also be a <strong>TLS Termination Proxy</strong>) to the container(s) with your app.</p>
+<h3 id="one-load-balancer-multiple-worker-containers">One Load Balancer - Multiple Worker Containers<a class="headerlink" href="#one-load-balancer-multiple-worker-containers" title="Permanent link">&para;</a></h3>
+<p>When working with <strong>Kubernetes</strong> or similar distributed container management systems, using their internal networking mechanisms would allow the single <strong>load balancer</strong> that is listening on the main <strong>port</strong> to transmit communication (requests) to possibly <strong>multiple containers</strong> running your app.</p>
+<p>Each of these containers running your app would normally have <strong>just one process</strong> (e.g. a Uvicorn process running your ReadyAPI application). They would all be <strong>identical containers</strong>, running the same thing, but each with its own process, memory, etc. That way you would take advantage of <strong>parallelization</strong> in <strong>different cores</strong> of the CPU, or even in <strong>different machines</strong>.</p>
+<p>And the distributed container system with the <strong>load balancer</strong> would <strong>distribute the requests</strong> to each one of the containers with your app <strong>in turns</strong>. So, each request could be handled by one of the multiple <strong>replicated containers</strong> running your app.</p>
+<p>And normally this <strong>load balancer</strong> would be able to handle requests that go to <em>other</em> apps in your cluster (e.g. to a different domain, or under a different URL path prefix), and would transmit that communication to the right containers for <em>that other</em> application running in your cluster.</p>
+<h3 id="one-process-per-container">One Process per Container<a class="headerlink" href="#one-process-per-container" title="Permanent link">&para;</a></h3>
+<p>In this type of scenario, you probably would want to have <strong>a single (Uvicorn) process per container</strong>, as you would already be handling replication at the cluster level.</p>
+<p>So, in this case, you <strong>would not</strong> want to have a process manager like Gunicorn with Uvicorn workers, or Uvicorn using its own Uvicorn workers. You would want to have just a <strong>single Uvicorn process</strong> per container (but probably multiple containers).</p>
+<p>Having another process manager inside the container (as would be with Gunicorn or Uvicorn managing Uvicorn workers) would only add <strong>unnecessary complexity</strong> that you are most probably already taking care of with your cluster system.</p>
+<h3 id="containers-with-multiple-processes-and-special-cases">Containers with Multiple Processes and Special Cases<a class="headerlink" href="#containers-with-multiple-processes-and-special-cases" title="Permanent link">&para;</a></h3>
+<p>Of course, there are <strong>special cases</strong> where you could want to have <strong>a container</strong> with a <strong>Gunicorn process manager</strong> starting several <strong>Uvicorn worker processes</strong> inside.</p>
+<p>In those cases, you can use the <strong>official Docker image</strong> that includes <strong>Gunicorn</strong> as a process manager running multiple <strong>Uvicorn worker processes</strong>, and some default settings to adjust the number of workers based on the current CPU cores automatically. I'll tell you more about it below in <a href="#official-docker-image-with-gunicorn-uvicorn">Official Docker Image with Gunicorn - Uvicorn</a>.</p>
+<p>Here are some examples of when that could make sense:</p>
+<h4 id="a-simple-app">A Simple App<a class="headerlink" href="#a-simple-app" title="Permanent link">&para;</a></h4>
+<p>You could want a process manager in the container if your application is <strong>simple enough</strong> that you don't need (at least not yet) to fine-tune the number of processes too much, and you can just use an automated default (with the official Docker image), and you are running it on a <strong>single server</strong>, not a cluster.</p>
+<h4 id="docker-compose">Docker Compose<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h4>
+<p>You could be deploying to a <strong>single server</strong> (not a cluster) with <strong>Docker Compose</strong>, so you wouldn't have an easy way to manage replication of containers (with Docker Compose) while preserving the shared network and <strong>load balancing</strong>.</p>
+<p>Then you could want to have <strong>a single container</strong> with a <strong>process manager</strong> starting <strong>several worker processes</strong> inside.</p>
+<h4 id="prometheus-and-other-reasons">Prometheus and Other Reasons<a class="headerlink" href="#prometheus-and-other-reasons" title="Permanent link">&para;</a></h4>
+<p>You could also have <strong>other reasons</strong> that would make it easier to have a <strong>single container</strong> with <strong>multiple processes</strong> instead of having <strong>multiple containers</strong> with <strong>a single process</strong> in each of them.</p>
+<p>For example (depending on your setup) you could have some tool like a Prometheus exporter in the same container that should have access to <strong>each of the requests</strong> that come.</p>
+<p>In this case, if you had <strong>multiple containers</strong>, by default, when Prometheus came to <strong>read the metrics</strong>, it would get the ones for <strong>a single container each time</strong> (for the container that handled that particular request), instead of getting the <strong>accumulated metrics</strong> for all the replicated containers.</p>
+<p>Then, in that case, it could be simpler to have <strong>one container</strong> with <strong>multiple processes</strong>, and a local tool (e.g. a Prometheus exporter) on the same container collecting Prometheus metrics for all the internal processes and exposing those metrics on that single container.</p>
+<hr />
+<p>The main point is, <strong>none</strong> of these are <strong>rules written in stone</strong> that you have to blindly follow. You can use these ideas to <strong>evaluate your own use case</strong> and decide what is the best approach for your system, checking out how to manage the concepts of:</p>
+<ul>
+<li>Security - HTTPS</li>
+<li>Running on startup</li>
+<li>Restarts</li>
+<li>Replication (the number of processes running)</li>
+<li>Memory</li>
+<li>Previous steps before starting</li>
+</ul>
+<h2 id="memory">Memory<a class="headerlink" href="#memory" title="Permanent link">&para;</a></h2>
+<p>If you run <strong>a single process per container</strong> you will have a more or less well-defined, stable, and limited amount of memory consumed by each of those containers (more than one if they are replicated).</p>
+<p>And then you can set those same memory limits and requirements in your configurations for your container management system (for example in <strong>Kubernetes</strong>). That way it will be able to <strong>replicate the containers</strong> in the <strong>available machines</strong> taking into account the amount of memory needed by them, and the amount available in the machines in the cluster.</p>
+<p>If your application is <strong>simple</strong>, this will probably <strong>not be a problem</strong>, and you might not need to specify hard memory limits. But if you are <strong>using a lot of memory</strong> (for example with <strong>machine learning</strong> models), you should check how much memory you are consuming and adjust the <strong>number of containers</strong> that runs in <strong>each machine</strong> (and maybe add more machines to your cluster).</p>
+<p>If you run <strong>multiple processes per container</strong> (for example with the official Docker image) you will have to make sure that the number of processes started doesn't <strong>consume more memory</strong> than what is available.</p>
+<h2 id="previous-steps-before-starting-and-containers">Previous Steps Before Starting and Containers<a class="headerlink" href="#previous-steps-before-starting-and-containers" title="Permanent link">&para;</a></h2>
+<p>If you are using containers (e.g. Docker, Kubernetes), then there are two main approaches you can use.</p>
+<h3 id="multiple-containers">Multiple Containers<a class="headerlink" href="#multiple-containers" title="Permanent link">&para;</a></h3>
+<p>If you have <strong>multiple containers</strong>, probably each one running a <strong>single process</strong> (for example, in a <strong>Kubernetes</strong> cluster), then you would probably want to have a <strong>separate container</strong> doing the work of the <strong>previous steps</strong> in a single container, running a single process, <strong>before</strong> running the replicated worker containers.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you are using Kubernetes, this would probably be an <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>.</p>
+</div>
+<p>If in your use case there's no problem in running those previous steps <strong>multiple times in parallel</strong> (for example if you are not running database migrations, but just checking if the database is ready yet), then you could also just put them in each container right before starting the main process.</p>
+<h3 id="single-container">Single Container<a class="headerlink" href="#single-container" title="Permanent link">&para;</a></h3>
+<p>If you have a simple setup, with a <strong>single container</strong> that then starts multiple <strong>worker processes</strong> (or also just one process), then you could run those previous steps in the same container, right before starting the process with the app. The official Docker image supports this internally.</p>
+<h2 id="official-docker-image-with-gunicorn-uvicorn">Official Docker Image with Gunicorn - Uvicorn<a class="headerlink" href="#official-docker-image-with-gunicorn-uvicorn" title="Permanent link">&para;</a></h2>
+<p>There is an official Docker image that includes Gunicorn running with Uvicorn workers, as detailed in a previous chapter: <a class="internal-link" href="../server-workers/" target="_blank">Server Workers - Gunicorn with Uvicorn</a>.</p>
+<p>This image would be useful mainly in the situations described above in: <a href="#containers-with-multiple-processes-and-special-cases">Containers with Multiple Processes and Special Cases</a>.</p>
+<ul>
+<li><a href="https://github.com/khulnasoft/uvicorn-gunicorn-readyapi-docker" class="external-link" target="_blank">khulnasoft/uvicorn-gunicorn-readyapi</a>.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There's a high chance that you <strong>don't</strong> need this base image or any other similar one, and would be better off by building the image from scratch as <a href="#build-a-docker-image-for-readyapi">described above in: Build a Docker Image for ReadyAPI</a>.</p>
+</div>
+<p>This image has an <strong>auto-tuning</strong> mechanism included to set the <strong>number of worker processes</strong> based on the CPU cores available.</p>
+<p>It has <strong>sensible defaults</strong>, but you can still change and update all the configurations with <strong>environment variables</strong> or configuration files.</p>
+<p>It also supports running <a href="https://github.com/khulnasoft/uvicorn-gunicorn-readyapi-docker#pre_start_path" class="external-link" target="_blank"><strong>previous steps before starting</strong></a> with a script.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To see all the configurations and options, go to the Docker image page: <a href="https://github.com/khulnasoft/uvicorn-gunicorn-readyapi-docker" class="external-link" target="_blank">khulnasoft/uvicorn-gunicorn-readyapi</a>.</p>
+</div>
+<h3 id="number-of-processes-on-the-official-docker-image">Number of Processes on the Official Docker Image<a class="headerlink" href="#number-of-processes-on-the-official-docker-image" title="Permanent link">&para;</a></h3>
+<p>The <strong>number of processes</strong> on this image is <strong>computed automatically</strong> from the CPU <strong>cores</strong> available.</p>
+<p>This means that it will try to <strong>squeeze</strong> as much <strong>performance</strong> from the CPU as possible.</p>
+<p>You can also adjust it with the configurations using <strong>environment variables</strong>, etc.</p>
+<p>But it also means that as the number of processes depends on the CPU the container is running, the <strong>amount of memory consumed</strong> will also depend on that.</p>
+<p>So, if your application consumes a lot of memory (for example with machine learning models), and your server has a lot of CPU cores <strong>but little memory</strong>, then your container could end up trying to use more memory than what is available, and degrading performance a lot (or even crashing). 🚨</p>
+<h3 id="create-a-dockerfile">Create a <code>Dockerfile</code><a class="headerlink" href="#create-a-dockerfile" title="Permanent link">&para;</a></h3>
+<p>Here's how you would create a <code>Dockerfile</code> based on this image:</p>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">khulnasoft/uvicorn-gunicorn-readyapi:python3.9</span>
+
+<span class="k">COPY</span><span class="w"> </span>./requirements.txt<span class="w"> </span>/app/requirements.txt
+
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--upgrade<span class="w"> </span>-r<span class="w"> </span>/app/requirements.txt
+
+<span class="k">COPY</span><span class="w"> </span>./app<span class="w"> </span>/app
+</code></pre></div>
+<h3 id="bigger-applications">Bigger Applications<a class="headerlink" href="#bigger-applications" title="Permanent link">&para;</a></h3>
+<p>If you followed the section about creating <a class="internal-link" href="../../tutorial/bigger-applications/" target="_blank">Bigger Applications with Multiple Files</a>, your <code>Dockerfile</code> might instead look like:</p>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">khulnasoft/uvicorn-gunicorn-readyapi:python3.9</span>
+
+<span class="k">COPY</span><span class="w"> </span>./requirements.txt<span class="w"> </span>/app/requirements.txt
+
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--upgrade<span class="w"> </span>-r<span class="w"> </span>/app/requirements.txt
+
+<span class="hll"><span class="k">COPY</span><span class="w"> </span>./app<span class="w"> </span>/app/app
+</span></code></pre></div>
+<h3 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h3>
+<p>You should probably <strong>not</strong> use this official base image (or any other similar one) if you are using <strong>Kubernetes</strong> (or others) and you are already setting <strong>replication</strong> at the cluster level, with multiple <strong>containers</strong>. In those cases, you are better off <strong>building an image from scratch</strong> as described above: <a href="#build-a-docker-image-for-readyapi">Build a Docker Image for ReadyAPI</a>.</p>
+<p>This image would be useful mainly in the special cases described above in <a href="#containers-with-multiple-processes-and-special-cases">Containers with Multiple Processes and Special Cases</a>. For example, if your application is <strong>simple enough</strong> that setting a default number of processes based on the CPU works well, you don't want to bother with manually configuring the replication at the cluster level, and you are not running more than one container with your app. Or if you are deploying with <strong>Docker Compose</strong>, running on a single server, etc.</p>
+<h2 id="deploy-the-container-image">Deploy the Container Image<a class="headerlink" href="#deploy-the-container-image" title="Permanent link">&para;</a></h2>
+<p>After having a Container (Docker) Image there are several ways to deploy it.</p>
+<p>For example:</p>
+<ul>
+<li>With <strong>Docker Compose</strong> in a single server</li>
+<li>With a <strong>Kubernetes</strong> cluster</li>
+<li>With a Docker Swarm Mode cluster</li>
+<li>With another tool like Nomad</li>
+<li>With a cloud service that takes your container image and deploys it</li>
+</ul>
+<h2 id="docker-image-with-poetry">Docker Image with Poetry<a class="headerlink" href="#docker-image-with-poetry" title="Permanent link">&para;</a></h2>
+<p>If you use <a href="https://python-poetry.org/" class="external-link" target="_blank">Poetry</a> to manage your project's dependencies, you could use Docker multi-stage building:</p>
+<div class="annotate highlight"><pre><span></span><code><span class="c"># (1)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.9</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s">requirements-stage</span>
+
+<span class="c"># (2)</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/tmp</span>
+
+<span class="c"># (3)</span>
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>poetry
+
+<span class="c"># (4)</span>
+<span class="k">COPY</span><span class="w"> </span>./pyproject.toml<span class="w"> </span>./poetry.lock*<span class="w"> </span>/tmp/
+
+<span class="c"># (5)</span>
+<span class="k">RUN</span><span class="w"> </span>poetry<span class="w"> </span><span class="nb">export</span><span class="w"> </span>-f<span class="w"> </span>requirements.txt<span class="w"> </span>--output<span class="w"> </span>requirements.txt<span class="w"> </span>--without-hashes
+
+<span class="c"># (6)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.9</span>
+
+<span class="c"># (7)</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/code</span>
+
+<span class="c"># (8)</span>
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>requirements-stage<span class="w"> </span>/tmp/requirements.txt<span class="w"> </span>/code/requirements.txt
+
+<span class="c"># (9)</span>
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--upgrade<span class="w"> </span>-r<span class="w"> </span>/code/requirements.txt
+
+<span class="c"># (10)</span>
+<span class="k">COPY</span><span class="w"> </span>./app<span class="w"> </span>/code/app
+
+<span class="c"># (11)</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.main:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;80&quot;</span><span class="p">]</span>
+</code></pre></div>
+<ol>
+<li>
+<p>This is the first stage, it is named <code>requirements-stage</code>.</p>
+</li>
+<li>
+<p>Set <code>/tmp</code> as the current working directory.</p>
+<p>Here's where we will generate the file <code>requirements.txt</code></p>
+</li>
+<li>
+<p>Install Poetry in this Docker stage.</p>
+</li>
+<li>
+<p>Copy the <code>pyproject.toml</code> and <code>poetry.lock</code> files to the <code>/tmp</code> directory.</p>
+<p>Because it uses <code>./poetry.lock*</code> (ending with a <code>*</code>), it won't crash if that file is not available yet.</p>
+</li>
+<li>
+<p>Generate the <code>requirements.txt</code> file.</p>
+</li>
+<li>
+<p>This is the final stage, anything here will be preserved in the final container image.</p>
+</li>
+<li>
+<p>Set the current working directory to <code>/code</code>.</p>
+</li>
+<li>
+<p>Copy the <code>requirements.txt</code> file to the <code>/code</code> directory.</p>
+<p>This file only lives in the previous Docker stage, that's why we use <code>--from-requirements-stage</code> to copy it.</p>
+</li>
+<li>
+<p>Install the package dependencies in the generated <code>requirements.txt</code> file.</p>
+</li>
+<li>
+<p>Copy the <code>app</code> directory to the <code>/code</code> directory.</p>
+</li>
+<li>
+<p>Run the <code>uvicorn</code> command, telling it to use the <code>app</code> object imported from <code>app.main</code>.</p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Click the bubble numbers to see what each line does.</p>
+</div>
+<p>A <strong>Docker stage</strong> is a part of a <code>Dockerfile</code> that works as a <strong>temporary container image</strong> that is only used to generate some files to be used later.</p>
+<p>The first stage will only be used to <strong>install Poetry</strong> and to <strong>generate the <code>requirements.txt</code></strong> with your project dependencies from Poetry's <code>pyproject.toml</code> file.</p>
+<p>This <code>requirements.txt</code> file will be used with <code>pip</code> later in the <strong>next stage</strong>.</p>
+<p>In the final container image <strong>only the final stage</strong> is preserved. The previous stage(s) will be discarded.</p>
+<p>When using Poetry, it would make sense to use <strong>Docker multi-stage builds</strong> because you don't really need to have Poetry and its dependencies installed in the final container image, you <strong>only need</strong> to have the generated <code>requirements.txt</code> file to install your project dependencies.</p>
+<p>Then in the next (and final) stage you would build the image more or less in the same way as described before.</p>
+<h3 id="behind-a-tls-termination-proxy-poetry">Behind a TLS Termination Proxy - Poetry<a class="headerlink" href="#behind-a-tls-termination-proxy-poetry" title="Permanent link">&para;</a></h3>
+<p>Again, if you are running your container behind a TLS Termination Proxy (load balancer) like Nginx or Traefik, add the option <code>--proxy-headers</code> to the command:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.main:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--proxy-headers&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;80&quot;</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="recap">Recap<a class="headerlink" href="#recap" title="Permanent link">&para;</a></h2>
+<p>Using container systems (e.g. with <strong>Docker</strong> and <strong>Kubernetes</strong>) it becomes fairly straightforward to handle all the <strong>deployment concepts</strong>:</p>
+<ul>
+<li>HTTPS</li>
+<li>Running on startup</li>
+<li>Restarts</li>
+<li>Replication (the number of processes running)</li>
+<li>Memory</li>
+<li>Previous steps before starting</li>
+</ul>
+<p>In most cases, you probably won't want to use any base image, and instead <strong>build a container image from scratch</strong> one based on the official Python Docker image.</p>
+<p>Taking care of the <strong>order</strong> of instructions in the <code>Dockerfile</code> and the <strong>Docker cache</strong> you can <strong>minimize build times</strong>, to maximize your productivity (and avoid boredom). 😎</p>
+<p>In certain special cases, you might want to use the official Docker image for ReadyAPI. 🤓</p>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+    <div class="md-copyright__highlight">
+        The ReadyAPI trademark is owned by <a href="https://khulnasoft.com" target="_blank">@khulnasoft</a> and is registered in the US and across other regions
+    </div>
+    
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+        Material for MkDocs
+    </a>
+    
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/khulnasoft/readyapi" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.gg/VQjSZaeJmf" target="_blank" rel="noopener" title="discord.gg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/readyapi" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/khulnasoft" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://dev.to/khulnasoft" target="_blank" rel="noopener" title="dev.to" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M120.12 208.29c-3.88-2.9-7.77-4.35-11.65-4.35H91.03v104.47h17.45c3.88 0 7.77-1.45 11.65-4.35 3.88-2.9 5.82-7.25 5.82-13.06v-69.65c-.01-5.8-1.96-10.16-5.83-13.06zM404.1 32H43.9C19.7 32 .06 51.59 0 75.8v360.4C.06 460.41 19.7 480 43.9 480h360.2c24.21 0 43.84-19.59 43.9-43.8V75.8c-.06-24.21-19.7-43.8-43.9-43.8zM154.2 291.19c0 18.81-11.61 47.31-48.36 47.25h-46.4V172.98h47.38c35.44 0 47.36 28.46 47.37 47.28l.01 70.93zm100.68-88.66H201.6v38.42h32.57v29.57H201.6v38.41h53.29v29.57h-62.18c-11.16.29-20.44-8.53-20.72-19.69V193.7c-.27-11.15 8.56-20.41 19.71-20.69h63.19l-.01 29.52zm103.64 115.29c-13.2 30.75-36.85 24.63-47.44 0l-38.53-144.8h32.57l29.71 113.72 29.57-113.72h32.58l-38.46 144.8z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://medium.com/@khulnasoft" target="_blank" rel="noopener" title="medium.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M180.5 74.262C80.813 74.262 0 155.633 0 256s80.819 181.738 180.5 181.738S361 356.373 361 256 280.191 74.262 180.5 74.262Zm288.25 10.646c-49.845 0-90.245 76.619-90.245 171.095s40.406 171.1 90.251 171.1 90.251-76.619 90.251-171.1H559c0-94.503-40.4-171.095-90.248-171.095Zm139.506 17.821c-17.526 0-31.735 68.628-31.735 153.274s14.2 153.274 31.735 153.274S640 340.631 640 256c0-84.649-14.215-153.271-31.742-153.271Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://khulnasoft.com" target="_blank" rel="noopener" title="khulnasoft.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 20.9 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "content.tabs.link", "navigation.indexes", "content.tooltips", "navigation.path", "content.code.annotate", "content.code.copy", "content.code.select", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      
+        <script src="../../js/termynal.js"></script>
+      
+        <script src="../../js/custom.js"></script>
+      
+    
+  </body>
+</html>
