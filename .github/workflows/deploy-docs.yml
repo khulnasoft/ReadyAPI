@@ -49,8 +49,14 @@ jobs:
           git remote add origin https://github.com/${{ github.repository }}
           git push --force origin master:gh-pages
 
+      - name: Find PR for Commit
+        id: find_pr
+        run: |
+          PR_URL=$(gh pr list --state open --json number,headRefName -q ".[] | select(.headRefName == \"${{ github.event.workflow_run.head_branch }}\") | .url")
+          echo "PR_URL=$PR_URL" >> $GITHUB_ENV
+
       - name: Comment Deploy
-        if: always()
+        if: steps.find_pr.outputs.PR_URL != ''
         uses: ./.github/actions/comment-docs-preview-in-pr
         with:
           token: ${{ secrets.ORG_REPO_TOKEN }}
