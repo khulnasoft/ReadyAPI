@@ -32,7 +32,6 @@ def test_post_body_example(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    # insert_assert(response.json())
     assert response.json() == {
         "openapi": "3.1.0",
         "info": {"title": "ReadyAPI", "version": "0.1.0"},

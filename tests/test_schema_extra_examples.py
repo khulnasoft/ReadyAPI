@@ -64,30 +64,7 @@ def create_app():
     # def form_example(firstname: str = Form(example="John")):
     #     return firstname
 
-    # @app.post("/form_examples")
-    # def form_examples(
-    #     lastname: str = Form(
-    #         ...,
-    #         examples={
-    #             "example1": {"summary": "last name summary", "value": "Doe"},
-    #             "example2": {"value": "Doesn't"},
-    #         },
-    #     ),
-    # ):
-    #     return lastname
 
-    # @app.post("/form_example_examples")
-    # def form_example_examples(
-    #     lastname: str = Form(
-    #         ...,
-    #         example="Doe overridden",
-    #         examples={
-    #             "example1": {"summary": "last name summary", "value": "Doe"},
-    #             "example2": {"value": "Doesn't"},
-    #         },
-    #     ),
-    # ):
-    #     return lastname
 
     with pytest.warns(DeprecationWarning):
 

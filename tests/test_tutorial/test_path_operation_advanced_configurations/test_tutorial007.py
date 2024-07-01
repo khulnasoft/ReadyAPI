@@ -55,7 +55,6 @@ def test_post_invalid(client: TestClient):
         """
     response = client.post("/items/", content=yaml_data)
     assert response.status_code == 422, response.text
-    # insert_assert(response.json())
     assert response.json() == {
         "detail": [
             {
